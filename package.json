@@ -1,0 +1,49 @@
+{
+  "name": "formpilot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@10.9.4",
+  "engines": {
+    "node": "^22.22.0 || ^24.0.0"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace @formpilot/website",
+    "dev:extension": "npm run dev --workspace @formpilot/extension",
+    "build": "npm run build --workspace @formpilot/extension && npm run build --workspace @formpilot/website",
+    "typecheck": "tsc --noEmit && npm run typecheck --workspace @formpilot/extension && npm run check --workspace @formpilot/website",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "benchmark": "node --import tsx scripts/benchmark.ts",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build",
+    "capture": "node --import tsx scripts/capture.ts",
+    "test:browsers": "playwright install chromium",
+    "start": "npm run preview --workspace @formpilot/website",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.64.1",
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "cross-env": "^10.1.0",
+    "eslint": "10.13.0",
+    "jsdom": "^26.1.0",
+    "node": "22.22.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.1",
+    "sharp": "^0.35.5",
+    "tsx": "^4.21.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "8.71.2",
+    "vitest": "5.0.5"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

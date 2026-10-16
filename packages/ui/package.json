@@ -1,0 +1,16 @@
+{
+  "name": "@formpilot/ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.tsx",
+    "./styles.css": "./src/styles.css",
+    "./review": "./src/review.tsx"
+  },
+  "dependencies": {
+    "@formpilot/profile-schema": "*",
+    "react": "^19.2.4",
+    "@formpilot/matching-engine": "*"
+  }
+}

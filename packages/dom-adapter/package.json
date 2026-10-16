@@ -1,0 +1,14 @@
+{
+  "name": "@formpilot/dom-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@formpilot/profile-schema": "*",
+    "@formpilot/matching-engine": "*",
+    "zod": "^4.3.6"
+  }
+}

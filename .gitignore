@@ -1,0 +1,14 @@
+node_modules/
+.pnpm-store/
+dist/
+.output/
+.wxt/
+.astro/
+test-results/
+playwright-report/
+.env
+.env.*.local
+.DS_Store
+*.log
+.test
+.test-results

@@ -1,0 +1,9 @@
+node_modules
+.output
+.wxt
+.astro
+dist
+package-lock.json
+test-results
+playwright-report
+docs/benchmarks/*.json

@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const links = [
+  ['/install/', 'Install & run', 'Build from source and load the unpacked Chromium extension.'],
+  [
+    '/how-it-works/',
+    'The review workflow',
+    'Profiles, suggestions, selection, filling, memories and undo.',
+  ],
+  ['/privacy/', 'Privacy & data', 'What stays local and what the website can read after filling.'],
+  [
+    '/limitations/',
+    'Controls & troubleshooting',
+    'Supported controls, page-access errors and dynamic forms.',
+  ],
+  [
+    '/benchmarks/',
+    'Benchmark & methodology',
+    'Real measured results on labelled synthetic examples.',
+  ],
+  [
+    '/articles/',
+    'Engineering field notes',
+    'Reusable profiles, privacy boundaries and visible uncertainty.',
+  ],
+];
+---
+
+<Layout
+  title="FormPilot documentation"
+  description="Installation, review workflow, local data handling, compatibility and reproducible benchmark documentation for the open-source FormPilot extension."
+>
+  <div class="page-heading">
+    <h1>A useful tool should be understandable.</h1>
+    <p>Start with installation, or look closer at the decisions behind the fill button.</p>
+  </div>
+  <div class="doc-grid">
+    {links.map(([url, title, text]) => (
+      <a class="doc-link" href={url}>
+        <h2 style="font-size:22px">{title}</h2>
+        <p>{text}</p>
+      </a>
+    ))}
+  </div>
+  <section class="prose">
+    <h2>For contributors</h2>
+    <p>
+      The repository includes architecture and threat-model documents, labelled fixtures, DOM
+      integration tests and real extension browser tests. Run <code>npm run check</code>,{' '}
+      <code>npm run test:e2e</code> and <code>npm run benchmark</code> from the repository root.
+      CONTRIBUTING.md explains the expectations for adding aliases, controls and tests.
+    </p>
+  </section>
+</Layout>

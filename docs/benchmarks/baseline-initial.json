@@ -1,0 +1,256 @@
+{
+  "generatedAt": "2026-10-16T14:37:25.891Z",
+  "dataset": "FormPilot synthetic English field benchmark v1",
+  "environment": {
+    "node": "v22.21.1",
+    "platform": "darwin",
+    "release": "25.4.0",
+    "arch": "arm64",
+    "cpu": "Apple M1 Pro",
+    "timingSamples": 10000,
+    "warmupCalls": 2000
+  },
+  "runtimeMs": {
+    "median": 0.00895900000000438,
+    "p95": 0.015917000000001735
+  },
+  "development": {
+    "cases": 56,
+    "eligible": 42,
+    "excluded": 14,
+    "proposed": 34,
+    "correctProposals": 34,
+    "precision": 1,
+    "coverage": 0.8095238095238095,
+    "abstentions": 8,
+    "abstentionRate": 0.19047619047619047,
+    "expectedAbstentions": 6,
+    "correctExpectedAbstentions": 6,
+    "incorrectHigh": 0,
+    "exclusionErrors": 0,
+    "failures": [
+      {
+        "id": "dev-job-git",
+        "expected": "github",
+        "actual": null,
+        "expectedExcluded": false,
+        "excluded": false,
+        "confidence": "none",
+        "correct": false,
+        "proposed": false
+      },
+      {
+        "id": "dev-job-link",
+        "expected": "linkedin",
+        "actual": null,
+        "expectedExcluded": false,
+        "excluded": false,
+        "confidence": "none",
+        "correct": false,
+        "proposed": false
+      }
+    ]
+  },
+  "heldOut": {
+    "cases": 100,
+    "eligible": 81,
+    "excluded": 19,
+    "proposed": 56,
+    "correctProposals": 55,
+    "precision": 0.9821428571428571,
+    "coverage": 0.691358024691358,
+    "abstentions": 25,
+    "abstentionRate": 0.30864197530864196,
+    "expectedAbstentions": 21,
+    "correctExpectedAbstentions": 21,
+    "incorrectHigh": 0,
+    "exclusionErrors": 0,
+    "failures": [
+      {
+        "id": "held-job-06",
+        "expected": "github",
+        "actual": null,
+        "expectedExcluded": false,
+        "excluded": false,
+        "confidence": "none",
+        "correct": false,
+        "proposed": false
+      },
+      {
+        "id": "held-job-07",
+        "expected": "linkedin",
+        "actual": null,
+        "expectedExcluded": false,
+        "excluded": false,
+        "confidence": "none",
+        "correct": false,
+        "proposed": false
+      },
+      {
+        "id": "held-saas-19",
+        "expected": "middleName",
+        "actual": null,
+        "expectedExcluded": false,
+        "excluded": false,
+        "confidence": "none",
+        "correct": false,
+        "proposed": false
+      },
+      {
+        "id": "held-difficult-06",
+        "expected": "email",
+        "actual": "firstName",
+        "expectedExcluded": false,
+        "excluded": false,
+        "confidence": "review",
+        "correct": false,
+        "proposed": true
+      },
+      {
+        "id": "held-difficult-19",
+        "expected": "linkedin",
+        "actual": null,
+        "expectedExcluded": false,
+        "excluded": false,
+        "confidence": "none",
+        "correct": false,
+        "proposed": false
+      }
+    ]
+  },
+  "byScenario": {
+    "event": {
+      "cases": 20,
+      "eligible": 18,
+      "excluded": 2,
+      "proposed": 13,
+      "correctProposals": 13,
+      "precision": 1,
+      "coverage": 0.7222222222222222,
+      "abstentions": 5,
+      "abstentionRate": 0.2777777777777778,
+      "expectedAbstentions": 5,
+      "correctExpectedAbstentions": 5,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": []
+    },
+    "job": {
+      "cases": 20,
+      "eligible": 17,
+      "excluded": 3,
+      "proposed": 11,
+      "correctProposals": 11,
+      "precision": 1,
+      "coverage": 0.6470588235294118,
+      "abstentions": 6,
+      "abstentionRate": 0.35294117647058826,
+      "expectedAbstentions": 4,
+      "correctExpectedAbstentions": 4,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": [
+        {
+          "id": "held-job-06",
+          "expected": "github",
+          "actual": null,
+          "expectedExcluded": false,
+          "excluded": false,
+          "confidence": "none",
+          "correct": false,
+          "proposed": false
+        },
+        {
+          "id": "held-job-07",
+          "expected": "linkedin",
+          "actual": null,
+          "expectedExcluded": false,
+          "excluded": false,
+          "confidence": "none",
+          "correct": false,
+          "proposed": false
+        }
+      ]
+    },
+    "shipping": {
+      "cases": 20,
+      "eligible": 15,
+      "excluded": 5,
+      "proposed": 13,
+      "correctProposals": 13,
+      "precision": 1,
+      "coverage": 0.8666666666666667,
+      "abstentions": 2,
+      "abstentionRate": 0.13333333333333333,
+      "expectedAbstentions": 2,
+      "correctExpectedAbstentions": 2,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": []
+    },
+    "saas": {
+      "cases": 20,
+      "eligible": 16,
+      "excluded": 4,
+      "proposed": 12,
+      "correctProposals": 12,
+      "precision": 1,
+      "coverage": 0.75,
+      "abstentions": 4,
+      "abstentionRate": 0.25,
+      "expectedAbstentions": 3,
+      "correctExpectedAbstentions": 3,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": [
+        {
+          "id": "held-saas-19",
+          "expected": "middleName",
+          "actual": null,
+          "expectedExcluded": false,
+          "excluded": false,
+          "confidence": "none",
+          "correct": false,
+          "proposed": false
+        }
+      ]
+    },
+    "difficult": {
+      "cases": 20,
+      "eligible": 15,
+      "excluded": 5,
+      "proposed": 7,
+      "correctProposals": 6,
+      "precision": 0.8571428571428571,
+      "coverage": 0.4666666666666667,
+      "abstentions": 8,
+      "abstentionRate": 0.5333333333333333,
+      "expectedAbstentions": 7,
+      "correctExpectedAbstentions": 7,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": [
+        {
+          "id": "held-difficult-06",
+          "expected": "email",
+          "actual": "firstName",
+          "expectedExcluded": false,
+          "excluded": false,
+          "confidence": "review",
+          "correct": false,
+          "proposed": true
+        },
+        {
+          "id": "held-difficult-19",
+          "expected": "linkedin",
+          "actual": null,
+          "expectedExcluded": false,
+          "excluded": false,
+          "confidence": "none",
+          "correct": false,
+          "proposed": false
+        }
+      ]
+    }
+  }
+}

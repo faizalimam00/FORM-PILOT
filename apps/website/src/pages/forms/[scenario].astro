@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Demo } from '../../components/Demo';
+import { scenarios } from '@formpilot/form-fixtures';
+export function getStaticPaths() {
+  return scenarios.map((s) => ({ params: { scenario: s.id }, props: { scenario: s } }));
+}
+const { scenario } = Astro.props;
+---
+
+<Layout title={`${scenario.name} demo`} description={scenario.description}>
+  <div class="page-heading">
+    <h1>{scenario.name}</h1>
+    <p>{scenario.description}</p>
+  </div>
+  <nav class="demo-nav" aria-label="Demo scenarios">
+    {scenarios.map((s) => (
+      <a href={`/forms/${s.id}/`} aria-current={s.id === scenario.id ? 'page' : undefined}>
+        {s.name}
+      </a>
+    ))}
+  </nav>
+  <div class="notice" style="margin-bottom:25px">
+    This standalone form is for testing the installed extension. Open FormPilot from the toolbar,
+    then click Scan page. No extension yet? <a href="/demo/">Try the interactive playground.</a>
+  </div>
+  <div style="max-width:780px;margin-bottom:50px">
+    <Demo scenario={scenario.id} playground={false} client:load />
+  </div>
+</Layout>

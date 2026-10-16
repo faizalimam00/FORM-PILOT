@@ -1,0 +1,107 @@
+---
+import '@formpilot/ui/styles.css';
+import { Logo, ThemeToggle } from '@formpilot/ui';
+import { site } from '../site';
+interface Props {
+  title: string;
+  description: string;
+  article?: boolean;
+}
+const { title, description, article = false } = Astro.props;
+const canonical = site.origin ? new URL(Astro.url.pathname, site.origin).href : undefined;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'FormPilot',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Desktop Chromium browsers',
+  softwareVersion: '0.1.0',
+  description:
+    'A local-first form autofill extension with semantic field matching and explicit review.',
+  license: 'https://opensource.org/license/mit',
+  author: { '@type': 'Person', name: 'Faizal Imam' },
+  ...(site.origin ? { url: site.origin } : {}),
+  ...(site.repository ? { codeRepository: site.repository } : {}),
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#087568" />
+    <title>{title} · FormPilot</title>
+    <meta name="description" content={description} />
+    {canonical ? (
+      <link rel="canonical" href={canonical} />
+    ) : (
+      <meta name="robots" content="noindex, nofollow" />
+    )}
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="FormPilot" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    {site.origin && (
+      <>
+        <meta property="og:image" content={new URL('/product-review.png', site.origin).href} />
+        <meta
+          property="og:image:alt"
+          content="FormPilot review window showing field matches and a selected fictional sample profile."
+        />
+      </>
+    )}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <div class="site-wrap">
+      <header class="site-header">
+        <a class="brand-link" href="/" aria-label="FormPilot home">
+          <Logo />
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="/how-it-works/" class="nav-secondary">
+            How it works
+          </a>
+          <a href="/docs/" class="nav-docs">
+            Docs
+          </a>
+          <a href="/demo/">Try demo</a>
+          <a class="button secondary" href="/install/">
+            Install locally
+          </a>
+          <ThemeToggle client:load />
+        </nav>
+      </header>
+      <main id="main">
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <div>
+          <Logo />
+          <p style="margin-top:14px">
+            Your details. Your device.
+            <br />
+            Every form, reviewed by you.
+          </p>
+          <p style="margin-top:15px">
+            Built by <a href="/about/">Faizal Imam</a>. Open source under MIT.
+          </p>
+        </div>
+        <nav aria-label="Footer navigation">
+          <a href="/privacy/">Privacy</a>
+          <a href="/limitations/">Limitations</a>
+          <a href="/benchmarks/">Benchmarks</a>
+          <a href="/articles/">Field notes</a>
+          {site.repository && <a href={site.repository}>GitHub</a>}
+        </nav>
+      </footer>
+    </div>
+  </body>
+</html>

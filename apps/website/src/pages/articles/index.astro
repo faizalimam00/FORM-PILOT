@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const articles = [
+  [
+    'reuse-your-details',
+    'How to reuse your details across repetitive web forms',
+    'Build a useful profile, keep contexts separate and review the destination.',
+  ],
+  [
+    'autofill-privacy',
+    'What browser autofill tools should explain about privacy',
+    'Local storage, permissions, exports and the moment a value becomes visible to a website.',
+  ],
+  [
+    'uncertain-matches',
+    'Why uncertain field matches should require review',
+    'Make abstention, context and benchmark errors part of the product.',
+  ],
+];
+---
+
+<Layout
+  title="Field notes from building FormPilot"
+  description="Practical articles about reusable profiles, browser-extension privacy and review-before-fill semantic matching."
+>
+  <div class="page-heading">
+    <h1>Notes from the form field.</h1>
+    <p>Practical decisions behind a small tool that handles personal information.</p>
+  </div>
+  <div class="stack" style="margin-bottom:60px">
+    {articles.map(([slug, title, text]) => (
+      <a class="doc-link" href={`/articles/${slug}/`}>
+        <h2 style="font-size:25px">{title}</h2>
+        <p>{text}</p>
+      </a>
+    ))}
+  </div>
+</Layout>

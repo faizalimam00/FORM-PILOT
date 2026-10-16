@@ -1,0 +1,21 @@
+---
+import Layout from './Layout.astro';
+const { frontmatter } = Astro.props;
+---
+
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  article={frontmatter.article ?? false}
+>
+  <div class="page-heading">
+    <h1>{frontmatter.title}</h1>
+    <p>{frontmatter.description}</p>
+    {frontmatter.article && (
+      <p class="article-meta">By Faizal Imam · FormPilot engineering notes · Version 0.1</p>
+    )}
+  </div>
+  <article class="prose">
+    <slot />
+  </article>
+</Layout>

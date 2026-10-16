@@ -1,0 +1,30 @@
+{
+  "name": "@formpilot/website",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev --host 127.0.0.1 --port 4321",
+    "build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview --host 127.0.0.1 --port 4321",
+    "check": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check"
+  },
+  "dependencies": {
+    "@formpilot/profile-schema": "*",
+    "@formpilot/matching-engine": "*",
+    "@formpilot/dom-adapter": "*",
+    "@formpilot/form-fixtures": "*",
+    "@formpilot/ui": "*",
+    "astro": "7.4.0",
+    "@astrojs/react": "7.1.0",
+    "@astrojs/sitemap": "^3.7.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "oxc-transform-react": "^0.145.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@tailwindcss/vite": "^4.2.0",
+    "tailwindcss": "^4.2.0"
+  }
+}

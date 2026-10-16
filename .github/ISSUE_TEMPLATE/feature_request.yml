@@ -1,0 +1,17 @@
+name: Feature request
+description: Describe a useful form workflow or supported-control improvement.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What real task is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and alternatives
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Privacy, permission or compatibility considerations

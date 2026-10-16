@@ -1,0 +1,174 @@
+{
+  "generatedAt": "2026-10-16T14:59:15.008Z",
+  "dataset": "FormPilot synthetic English field benchmark v1",
+  "environment": {
+    "node": "v22.22.0",
+    "platform": "darwin",
+    "release": "25.4.0",
+    "arch": "arm64",
+    "cpu": "Apple M1 Pro",
+    "timingSamples": 10000,
+    "warmupCalls": 2000
+  },
+  "runtimeMs": {
+    "median": 0.00925000000000864,
+    "p95": 0.015290999999990618
+  },
+  "development": {
+    "cases": 56,
+    "eligible": 42,
+    "excluded": 14,
+    "proposed": 36,
+    "correctProposals": 36,
+    "precision": 1,
+    "coverage": 0.8571428571428571,
+    "abstentions": 6,
+    "abstentionRate": 0.14285714285714285,
+    "expectedAbstentions": 6,
+    "correctExpectedAbstentions": 6,
+    "incorrectHigh": 0,
+    "exclusionErrors": 0,
+    "failures": []
+  },
+  "heldOut": {
+    "cases": 100,
+    "eligible": 81,
+    "excluded": 19,
+    "proposed": 59,
+    "correctProposals": 58,
+    "precision": 0.9830508474576272,
+    "coverage": 0.7283950617283951,
+    "abstentions": 22,
+    "abstentionRate": 0.2716049382716049,
+    "expectedAbstentions": 21,
+    "correctExpectedAbstentions": 21,
+    "incorrectHigh": 0,
+    "exclusionErrors": 0,
+    "failures": [
+      {
+        "id": "held-saas-19",
+        "expected": "middleName",
+        "actual": null,
+        "expectedExcluded": false,
+        "excluded": false,
+        "confidence": "none",
+        "correct": false,
+        "proposed": false
+      },
+      {
+        "id": "held-difficult-06",
+        "expected": "email",
+        "actual": "firstName",
+        "expectedExcluded": false,
+        "excluded": false,
+        "confidence": "review",
+        "correct": false,
+        "proposed": true
+      }
+    ]
+  },
+  "byScenario": {
+    "event": {
+      "cases": 20,
+      "eligible": 18,
+      "excluded": 2,
+      "proposed": 13,
+      "correctProposals": 13,
+      "precision": 1,
+      "coverage": 0.7222222222222222,
+      "abstentions": 5,
+      "abstentionRate": 0.2777777777777778,
+      "expectedAbstentions": 5,
+      "correctExpectedAbstentions": 5,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": []
+    },
+    "job": {
+      "cases": 20,
+      "eligible": 17,
+      "excluded": 3,
+      "proposed": 13,
+      "correctProposals": 13,
+      "precision": 1,
+      "coverage": 0.7647058823529411,
+      "abstentions": 4,
+      "abstentionRate": 0.23529411764705882,
+      "expectedAbstentions": 4,
+      "correctExpectedAbstentions": 4,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": []
+    },
+    "shipping": {
+      "cases": 20,
+      "eligible": 15,
+      "excluded": 5,
+      "proposed": 13,
+      "correctProposals": 13,
+      "precision": 1,
+      "coverage": 0.8666666666666667,
+      "abstentions": 2,
+      "abstentionRate": 0.13333333333333333,
+      "expectedAbstentions": 2,
+      "correctExpectedAbstentions": 2,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": []
+    },
+    "saas": {
+      "cases": 20,
+      "eligible": 16,
+      "excluded": 4,
+      "proposed": 12,
+      "correctProposals": 12,
+      "precision": 1,
+      "coverage": 0.75,
+      "abstentions": 4,
+      "abstentionRate": 0.25,
+      "expectedAbstentions": 3,
+      "correctExpectedAbstentions": 3,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": [
+        {
+          "id": "held-saas-19",
+          "expected": "middleName",
+          "actual": null,
+          "expectedExcluded": false,
+          "excluded": false,
+          "confidence": "none",
+          "correct": false,
+          "proposed": false
+        }
+      ]
+    },
+    "difficult": {
+      "cases": 20,
+      "eligible": 15,
+      "excluded": 5,
+      "proposed": 8,
+      "correctProposals": 7,
+      "precision": 0.875,
+      "coverage": 0.5333333333333333,
+      "abstentions": 7,
+      "abstentionRate": 0.4666666666666667,
+      "expectedAbstentions": 7,
+      "correctExpectedAbstentions": 7,
+      "incorrectHigh": 0,
+      "exclusionErrors": 0,
+      "failures": [
+        {
+          "id": "held-difficult-06",
+          "expected": "email",
+          "actual": "firstName",
+          "expectedExcluded": false,
+          "excluded": false,
+          "confidence": "review",
+          "correct": false,
+          "proposed": true
+        }
+      ]
+    }
+  }
+}

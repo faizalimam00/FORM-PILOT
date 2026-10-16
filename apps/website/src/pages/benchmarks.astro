@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import report from '../../../../docs/benchmarks/results.json';
+const pct = (n: number) => (n * 100).toFixed(1) + '%';
+---
+
+<Layout
+  title="A measured look at field matching"
+  description="Reproducible FormPilot benchmark results with explicit denominators, held-out synthetic cases, abstentions, errors and runtime measurements."
+>
+  <div class="page-heading">
+    <h1>Show the work. Keep the caveats.</h1>
+    <p>
+      A small, reproducible benchmark of the actual matching engine. These synthetic examples test
+      specific behaviors; they do not represent every website.
+    </p>
+  </div>
+  <div class="grid-3" style="margin-bottom:35px">
+    <div class="benchmark-stat">
+      <div class="benchmark-number">{pct(report.heldOut.precision)}</div>
+      <p class="small muted">Precision among proposed matches</p>
+    </div>
+    <div class="benchmark-stat">
+      <div class="benchmark-number">{pct(report.heldOut.coverage)}</div>
+      <p class="small muted">Coverage across eligible fields</p>
+    </div>
+    <div class="benchmark-stat">
+      <div class="benchmark-number">{report.heldOut.incorrectHigh}</div>
+      <p class="small muted">Incorrect high-confidence matches</p>
+    </div>
+  </div>
+  <div class="prose">
+    <p>
+      Measured {report.generatedAt}. Evaluation set: {report.heldOut.cases} fields across five
+      scenarios, including {report.heldOut.eligible} eligible fields and {report.heldOut.excluded}{' '}
+      expected exclusions. A separate development set contains {report.development.cases} cases.
+    </p>
+    <h2>Results by scenario</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Scenario</th>
+            <th>Precision</th>
+            <th>Coverage</th>
+            <th>Abstention</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(report.byScenario).map(([name, r]) => (
+            <tr>
+              <td>{name}</td>
+              <td>{pct(r.precision)}</td>
+              <td>{pct(r.coverage)}</td>
+              <td>{pct(r.abstentionRate)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <h2>What the numbers mean</h2>
+    <p>
+      Precision is correct property proposals divided by all proposals (
+      {report.heldOut.correctProposals}/{report.heldOut.proposed}). Coverage is eligible fields with
+      a proposal divided by all eligible fields. Abstention rate is eligible fields without a
+      proposal divided by all eligible fields: {pct(report.heldOut.abstentionRate)}. An expected
+      exclusion is outside the eligible denominator. A proposal on an expected exclusion would still
+      count as an incorrect proposal.
+    </p>
+    <p>
+      Intentional abstentions are successful outcomes, not missed positive matches. The matcher
+      correctly abstained on {report.heldOut.correctExpectedAbstentions} of{' '}
+      {report.heldOut.expectedAbstentions} deliberately ambiguous eligible cases. Exclusion
+      classification errors: {report.heldOut.exclusionErrors}. These categories are not calibrated
+      probabilities.
+    </p>
+    <h2>Failures remain visible</h2>
+    <p>
+      The JSON report retains every mismatched expected outcome, including missing profile values. A
+      conflicting autocomplete token can win over the visible label and still be wrong; the conflict
+      is marked for review. This evaluation reports the proposed key, so a review warning does not
+      erase an error.
+    </p>
+    <h2>Runtime, with context</h2>
+    <p>
+      Median {report.runtimeMs.median.toFixed(4)} ms and p95 {report.runtimeMs.p95.toFixed(4)} ms
+      per field. Measured over {report.environment.timingSamples.toLocaleString()} calls after{' '}
+      {report.environment.warmupCalls.toLocaleString()} warm-up calls, on {report.environment.cpu},{' '}
+      {report.environment.platform} {report.environment.arch}, Node {report.environment.node}. This
+      excludes DOM inspection, browser messaging, storage and rendering. It is not an end-to-end
+      browser latency claim.
+    </p>
+    <h2>Reproduce and challenge it</h2>
+    <pre><code>npm ci{'\n'}npm run benchmark</code></pre>
+    <p>
+      Cases are hand-authored English metadata examples. The development set comes from the five
+      controlled demos; the held-out file was authored separately and frozen before the first
+      benchmark. They are not random samples, independent third-party validation or a guarantee of
+      real-site performance. Source and expected labels live in <code>packages/form-fixtures</code>.
+      The report is written to <code>docs/benchmarks/results.json</code> and this page is rebuilt
+      from it.
+    </p>
+    <p>
+      The matching benchmark measures metadata decisions. Separate browser tests exercise
+      React-controlled inputs, dynamic country fields, fill behavior and undo. A good matcher result
+      alone does not prove a successful fill.
+    </p>
+  </div>
+</Layout>

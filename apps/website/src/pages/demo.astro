@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Demo } from '../components/Demo';
+import { scenarios } from '@formpilot/form-fixtures';
+---
+
+<Layout
+  title="Try the interactive form-matching demo"
+  description="Explore FormPilot’s real matching engine with fictional sample details. Inspect suggestions, review uncertainty, fill selected fields and undo locally."
+>
+  <div class="page-heading">
+    <h1>A form. A profile. Your decision.</h1>
+    <p>
+      Try the real matching engine, right here. This playground uses fictional data and only
+      inspects the controlled form below.
+    </p>
+  </div>
+  <nav class="demo-nav" aria-label="Demo scenarios">
+    {scenarios.map((s) => (
+      <a href={`/forms/${s.id}/`}>{s.name}</a>
+    ))}
+  </nav>
+  <Demo client:load />
+  <p class="muted small" style="margin-bottom:40px">
+    Testing the installed extension? Use a <a href="/forms/event/">standalone demo form</a> with no
+    playground controls.
+  </p>
+</Layout>

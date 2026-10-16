@@ -1,0 +1,271 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../site';
+---
+
+<Layout
+  title="Fill the familiar. Review the uncertain."
+  description="FormPilot is a local-first form autofill extension. Reuse your profile across web forms, inspect every suggestion, and choose exactly what gets filled."
+>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="release-label">
+        <span class="dot"></span>Open source. On your terms.
+      </div>
+      <h1>
+        Fill the familiar.
+        <br />
+        Review the uncertain.
+      </h1>
+      <p>
+        Reuse your profile across forms, inspect every suggestion, and stay in control of what gets
+        filled.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/demo/">
+          Try the interactive demo
+        </a>
+        <a class="button secondary" href="/install/">
+          Install FormPilot
+        </a>
+      </div>
+      <p class="hero-note">No account. No subscription. No AI API required.</p>
+    </div>
+    <figure class="hero-capture">
+      <img
+        src="/product-review.png"
+        width="470"
+        height="790"
+        alt="Actual FormPilot review window with Alex Morgan’s fictional profile, explained matches and checkboxes for selecting fields."
+        fetchpriority="high"
+      />
+      <figcaption>Real extension capture · fictional sample details</figcaption>
+    </figure>
+  </section>
+  <div class="trust-line">
+    <span>
+      <span class="dot"></span>Only scans when you ask
+    </span>
+    <span>
+      <span class="dot"></span>Profiles stay in your browser
+    </span>
+    <span>
+      <span class="dot"></span>Never submits a form
+    </span>
+  </div>
+  <section class="site-section">
+    <div class="section-intro">
+      <h2>
+        Fewer keystrokes.
+        <br />
+        The same final say.
+      </h2>
+      <p>
+        A reusable profile for web forms, with a deliberate pause before your details go anywhere.
+      </p>
+    </div>
+    <div class="grid-3">
+      <article class="step">
+        <span class="step-number">1</span>
+        <h3>Save the familiar details</h3>
+        <p>
+          Keep personal and work profiles separate. Add your name, contact information, address and
+          professional links once.
+        </p>
+      </article>
+      <article class="step">
+        <span class="step-number">2</span>
+        <h3>See what fits the form</h3>
+        <p>
+          Ask FormPilot to inspect the page. See each proposed match, the reason behind it, and
+          anything that needs a closer look.
+        </p>
+      </article>
+      <article class="step">
+        <span class="step-number">3</span>
+        <h3>Choose. Fill. Carry on.</h3>
+        <p>
+          Select the fields you want. Existing values stay put by default. Review the completed form
+          and submit it yourself.
+        </p>
+      </article>
+    </div>
+  </section>
+  <section class="site-section feature-split">
+    <div>
+      <h2>
+        A useful suggestion
+        <br />
+        comes with a reason.
+      </h2>
+      <p>
+        “Email address” is usually straightforward. “Name” might be a person, a team or an account.
+        FormPilot treats those differently.
+      </p>
+      <p>
+        Semantic field matching uses labels, accessibility text and autocomplete metadata. You can
+        change or clear any mapping.
+      </p>
+      <a
+        href="/articles/uncertain-matches/"
+        class="text-button"
+        style="display:inline-block;margin-top:15px"
+      >
+        Why uncertainty deserves a pause
+      </a>
+    </div>
+    <div>
+      <article class="principle-row">
+        <span class="pill">High confidence</span>
+        <h3>Clear signals, explained</h3>
+        <p>Strong matches are selected when the field is empty and the profile has a value.</p>
+      </article>
+      <article class="principle-row">
+        <span class="pill review">Needs review</span>
+        <h3>Your attention is the next step</h3>
+        <p>
+          Weak hints, conflicting labels and billing or shipping context require your selection.
+        </p>
+      </article>
+      <article class="principle-row">
+        <span class="pill none">No reliable match</span>
+        <h3>Leaving it alone is useful, too</h3>
+        <p>When the evidence is too thin, FormPilot abstains. Sensitive fields are excluded.</p>
+      </article>
+    </div>
+  </section>
+  <section class="site-section">
+    <div class="privacy-panel">
+      <h2>Your profile doesn’t need a cloud.</h2>
+      <div>
+        <p>
+          Profiles live in extension-local browser storage. There is no account, cloud sync,
+          telemetry or external matching service.
+        </p>
+        <p style="margin-top:15px">
+          Local storage is not encryption. And once you fill a field, that website can read its
+          value. You choose when that happens.
+        </p>
+        <a href="/privacy/" style="display:inline-block;margin-top:20px">
+          Read the plain-language privacy policy
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="site-section">
+    <div class="section-intro">
+      <h2>For the forms life repeats.</h2>
+      <p>Five controlled examples let you explore both the useful matches and the limits.</p>
+    </div>
+    <div class="grid-3 use-cases">
+      <article>
+        <h3>Applications & introductions</h3>
+        <p>Reuse professional details, a short bio and portfolio links.</p>
+        <a
+          href="/forms/job/"
+          class="text-button small"
+          style="display:inline-block;margin-top:12px"
+        >
+          Try a job application
+        </a>
+      </article>
+      <article>
+        <h3>Registrations & signups</h3>
+        <p>Keep the basics ready without handing over the submit button.</p>
+        <a
+          href="/forms/event/"
+          class="text-button small"
+          style="display:inline-block;margin-top:12px"
+        >
+          Try event registration
+        </a>
+      </article>
+      <article>
+        <h3>Addresses & onboarding</h3>
+        <p>Review repeated sections and see how changing forms are handled.</p>
+        <a
+          href="/forms/shipping/"
+          class="text-button small"
+          style="display:inline-block;margin-top:12px"
+        >
+          Try shipping details
+        </a>
+      </article>
+    </div>
+  </section>
+  <section class="site-section feature-split">
+    <div>
+      <h2>
+        A small tool.
+        <br />
+        Clearly drawn limits.
+      </h2>
+      <p>
+        Version one supports native text, email, telephone and URL inputs, textareas and selects in
+        the top-level page.
+      </p>
+      <p>
+        It doesn’t handle every website. Cross-origin frames, shadow-root controls, rich-text
+        editors and custom dropdowns are outside this release.
+      </p>
+      <a href="/limitations/" class="text-button" style="display:inline-block;margin-top:14px">
+        See supported controls & troubleshooting
+      </a>
+    </div>
+    <div>
+      <details>
+        <summary>Does this replace my browser’s autofill?</summary>
+        <p>
+          It gives you a separate review-before-fill workflow and reusable personal or work
+          profiles. Your browser’s own autofill can remain enabled.
+        </p>
+      </details>
+      <details>
+        <summary>Does FormPilot use AI?</summary>
+        <p>
+          No. Version one uses deterministic semantic rules. It makes no LLM calls and needs no paid
+          API key.
+        </p>
+      </details>
+      <details>
+        <summary>Can I undo a fill?</summary>
+        <p>
+          Yes, the most recent fill can be undone within five minutes in the same page session.
+          Fields you edited afterward are skipped.
+        </p>
+      </details>
+      <details>
+        <summary>Is it available in an extension store?</summary>
+        <p>
+          No store listing is claimed. Build and load the unpacked extension using the installation
+          guide.
+        </p>
+      </details>
+    </div>
+  </section>
+  <section class="site-section">
+    <div class="section-intro">
+      <div>
+        <h2>Open code. Visible decisions.</h2>
+        <p class="muted" style="margin-top:15px">
+          Built by Faizal Imam, a software developer and AI builder who enjoys useful tools and
+          practical engineering problems.
+        </p>
+      </div>
+      <div class="row">
+        <a class="button secondary" href="/benchmarks/">
+          Read the measured benchmark
+        </a>
+        {site.repository ? (
+          <a class="text-button" href={site.repository}>
+            Explore the source
+          </a>
+        ) : (
+          <a class="text-button" href="/about/">
+            Meet the creator
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+</Layout>
