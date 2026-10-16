@@ -1,10 +1,13 @@
 import { defineConfig } from 'wxt';
 import tailwindcss from '@tailwindcss/vite';
+import project from '../../package.json';
 export default defineConfig({
   modules: ['@wxt-dev/module-react'],
+  zip: { name: 'formpilot' },
   vite: () => ({ plugins: [tailwindcss()] }),
   manifest: {
     name: 'FormPilot',
+    homepage_url: project.homepage,
     description: 'Your details. Your device. Every form, reviewed by you.',
     version: '0.1.0',
     minimum_chrome_version: '120',

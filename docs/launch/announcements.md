@@ -1,6 +1,6 @@
 # Unpublished launch drafts
 
-Replace {{REPOSITORY_URL}}, {{DEMO_URL}} and {{DOCS_URL}} with actual configured URLs. Do not send or publish these drafts without explicit authorization. Check each destination’s rules and current product verification first.
+These drafts use the public FormPilot repository and local-demo instructions. There is no hosted demo yet. Do not send or publish these drafts without explicit authorization. Check each destination’s rules and current product verification first.
 
 ## GitHub release announcement
 
@@ -8,9 +8,9 @@ FormPilot 0.1 is a local-first Chromium extension for reusing your details acros
 
 It uses deterministic semantic matching—no account, backend or AI API. Native inputs, textareas and selects are supported; frames, shadow-root controls and custom dropdowns are outside this release. It never submits forms.
 
-Start with the fictional demo and unpacked installation guide: {{DEMO_URL}} · {{DOCS_URL}}
+Start with the local fictional demo and unpacked installation guide: https://github.com/faizalimam00/FORM-PILOT#try-it-locally
 
-The repository includes real extension tests and a reproducible synthetic benchmark with its limitations and errors: {{REPOSITORY_URL}}
+The repository includes real extension tests and a reproducible synthetic benchmark with its limitations and errors: https://github.com/faizalimam00/FORM-PILOT
 
 ## LinkedIn post
 
@@ -20,9 +20,9 @@ The interesting part was keeping the decision visible. FormPilot saves a local p
 
 Version one uses deterministic rules, not an AI service. The repository includes five controlled forms, extension tests and a benchmark that reports abstentions and mistakes alongside correct matches.
 
-You can try the fictional-data playground without installing anything: {{DEMO_URL}}
+Run the fictional-data playground locally without installing the browser extension: https://github.com/faizalimam00/FORM-PILOT#try-it-locally
 
-Code and limitations: {{REPOSITORY_URL}}
+Code and limitations: https://github.com/faizalimam00/FORM-PILOT
 
 Built by Faizal Imam. I’ll share practical fixes and the engineering decisions as the project develops.
 
@@ -38,7 +38,7 @@ Two implementation details were particularly useful: binding random field tokens
 
 There are five fictional demo forms and separate unit, DOM and packaged-extension Chromium tests. The synthetic benchmark publishes its denominators, abstentions and failures; it is not a universal compatibility claim.
 
-Demo: {{DEMO_URL}} · Source: {{REPOSITORY_URL}}
+Local demo instructions: https://github.com/faizalimam00/FORM-PILOT#try-it-locally · Source: https://github.com/faizalimam00/FORM-PILOT
 
 If you have a minimal fictional example of a native form control this mishandles, a reproducible issue would be useful. Please do not share real profile exports. Posted only where project sharing and feedback requests are permitted.
 
@@ -50,7 +50,7 @@ If you have a minimal fictional example of a native form control this mishandles
 - **27–36 s:** Select a reviewed field and fill. “Only my selection goes into the form. It doesn’t submit or move to the next step.”
 - **36–45 s:** Edit one filled value manually, then undo. “Undo restores its changes and keeps my later edit.”
 - **45–53 s:** Show difficult demo exclusions and the limitations page. “Native controls are supported. Frames and custom dropdowns aren’t supported in this release.”
-- **53–60 s:** Show actual demo/repository links after configuration. “Try the fictional-data playground. The code, tests and measured benchmark are open to inspect.”
+- **53–60 s:** Show github.com/faizalimam00/FORM-PILOT. “Run the fictional-data playground locally. The code, tests and measured benchmark are open to inspect.”
 
 Capture each action from the working app. Do not simulate a successful interaction or place real personal details in the recording.
 

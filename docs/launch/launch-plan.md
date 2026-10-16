@@ -1,6 +1,6 @@
 # FormPilot: a practical 30-day launch plan
 
-Status: draft only. No content has been sent or published. The schedule begins after repository/domain/reporting details are supplied and publication is authorized. This plan promises neither rankings nor follower growth.
+Status: draft only. No content has been sent or published. The source repository is github.com/faizalimam00/FORM-PILOT. The schedule begins when the website host and private-reporting route are ready and further publication is authorized. This plan promises neither rankings nor follower growth.
 
 The reason to follow Faizal Imam is ongoing useful releases, transparent engineering decisions, reproducible experiments and responsive maintenance. Product usefulness is the starting point; creator attribution stays restrained.
 
@@ -10,8 +10,8 @@ The reason to follow Faizal Imam is ongoing useful releases, transparent enginee
 2. Manually test unpacked installation in a fresh Chromium profile. Improve confusing instructions.
 3. Verify five forms with fictional data and capture the actual scan/review/fill/undo sequence.
 4. Review privacy copy against the manifest, storage implementation and hosting choices. Configure private reports before launch.
-5. Configure the supplied new GitHub identity, actual repository URL and real website origin in a local preview.
-6. Publish the repository and site only after explicit authorization. Verify links, canonical URLs, sitemap and crawl settings.
+5. Verify the faizalimam00 profile and FORM-PILOT repository links, then configure the chosen website origin in a local preview.
+6. Publish the prepared repository changes and website only after authorization. Verify links, canonical URLs, sitemap and crawl settings.
 7. Ask a small number of willing testers in an existing relationship to try the install guide. No unsolicited messages; invitations require authorization.
 
 ## Days 8–14: explain one useful behavior at a time
@@ -42,7 +42,7 @@ The reason to follow Faizal Imam is ongoing useful releases, transparent enginee
 25. Capture updated real screenshots only if the interface changed.
 26. Review documentation searchability: precise titles, useful internal links and specific troubleshooting answers. Avoid bulk keyword pages.
 27. If a browser-store release is desired, prepare the package and disclosures. Submission requires separate authorization and an actual developer account.
-28. Update the proposed creator profile with actual links only after account details are confirmed. Do not imply past achievements or adoption.
+28. Review the prepared creator profile draft for @faizalimam00. Copy it into the separate profile repository only with authorization; do not imply past achievements or adoption.
 29. Publish a short maintenance note: shipped fixes, unresolved constraints and next small experiment.
 30. Assess real feedback qualitatively. Decide what to maintain, improve or defer. Do not fabricate install/follower baselines, testimonials or growth forecasts.
 

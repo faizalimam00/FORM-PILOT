@@ -1,4 +1,5 @@
-const username = import.meta.env.PUBLIC_GITHUB_USERNAME || 'YOUR_NEW_GITHUB_USERNAME';
+import project from '../../../package.json';
+const username = import.meta.env.PUBLIC_GITHUB_USERNAME || 'faizalimam00';
 function https(value: string | undefined): string | undefined {
   try {
     if (!value) return;
@@ -11,10 +12,9 @@ function https(value: string | undefined): string | undefined {
 }
 export const site = {
   name: 'FormPilot',
-  creator: 'Faizal Imam',
+  creator: project.author.name,
   origin: https(import.meta.env.PUBLIC_SITE_URL),
-  github:
-    username === 'YOUR_NEW_GITHUB_USERNAME' ? undefined : https(`https://github.com/${username}`),
-  repository: https(import.meta.env.PUBLIC_REPOSITORY_URL),
+  github: https(`https://github.com/${username}`),
+  repository: https(import.meta.env.PUBLIC_REPOSITORY_URL || project.homepage),
   username,
 };

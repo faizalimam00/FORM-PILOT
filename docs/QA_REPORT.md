@@ -2,6 +2,24 @@
 
 Verified locally on 2026-10-16. This is evidence from the implementation workspace, not a claim of a published release, successful hosted CI run, universal browser support or an independent security audit.
 
+## Prebuilt download follow-up
+
+The production build now generates `dist/releases/formpilot-0.1.0-chrome.zip` (189,350 bytes), installation instructions, release metadata and a SHA-256 checksum. The static website includes the same files under `/downloads/`. The archive contains compiled extension files, instructions and license notices; no personal profiles, local settings, source maps or development dependencies.
+
+`npm run check` passed again: lint, strict types, 70 unit/integration tests, WXT production ZIP generation and the Astro static build. `npm audit --audit-level=high` still reports zero vulnerabilities after adding the build-only ZIP dependency.
+
+All 15 existing browser cases passed in the expanded run. The new package case initially exposed an Astro bundled-path issue that hid the download button; after correcting the filesystem lookup, `npm run test:e2e -- tests/extension/package.spec.ts` passed. It fetched the actual website ZIP, verified its SHA-256 and byte-for-byte production file contents, extracted it, loaded that extracted directory in Chromium, saved the fictional profile and performed a reviewed fill. It also exercised the download link and checked desktop/mobile accessibility and overflow. The 1440px and 375px installation-page captures were visually inspected.
+
+Chrome/Chromium is the verified target. The download instructions cover Edge and Brave without claiming those browsers were independently tested. Firefox, Safari and mobile remain unsupported. CI is configured to retain the tested package as an artifact; no release or store listing has been published.
+
+## Repository identity follow-up
+
+Repository metadata was read from GitHub: `faizalimam00/FORM-PILOT` is public, its default branch is `main`, it has no configured homepage or GitHub Pages deployment, and its release list is empty. Private vulnerability reporting was verified disabled. No repository settings were changed.
+
+README, website defaults, About and privacy pages, package metadata, extension homepage, archive instructions and launch/profile drafts now use Faizal Imam and the confirmed GitHub URLs. Incomplete identity and launch-link template tokens were removed. Demo/test profiles stay intentionally fictional. Demo links in launch drafts point to the real local-run guide because no hosted demo is available.
+
+`npm run check` passed after these changes: lint, strict types, 70 unit/integration tests, extension packaging and the website build. A generated-artifact check confirmed the repository identity in all 19 HTML pages and in the ZIP manifest/instructions. The updated archive checksum is recorded in `dist/releases/SHA256SUMS.txt`. The six targeted Playwright cases for real capture, downloaded-package installation and website behavior all passed (22.0 seconds), including desktop/mobile accessibility and overflow checks.
+
 ## Environment
 
 - macOS / Darwin 25.4.0, arm64, Apple M1 Pro.
@@ -81,4 +99,4 @@ Read the [full results](benchmarks/results.md) and [methodology](benchmarks/meth
 
 The Chrome 120 API minimum is declared, but the minimum version, Edge, Firefox and a broad real-site matrix were not tested. All iframes, shadow-root controls, rich text, custom dropdowns and unsupported native types are outside v1. Matching primarily understands English and a limited country/region alias set. Browser scheduling and asynchronous website changes can affect results. No Lighthouse score, Web Vitals benchmark or full assistive-technology audit is claimed.
 
-Publication still requires the supplied new GitHub identity, a repository and real HTTPS domain, a private reporting route, hosting log disclosures and optional browser-store account/review. Hosted CI must run after repository publication. No site, store listing, profile README or promotional content has been published. See [deployment](launch/deployment.md).
+The repository is now [faizalimam00/FORM-PILOT](https://github.com/faizalimam00/FORM-PILOT), maintained by Faizal Imam. Remaining publication work is a real HTTPS website domain, a private reporting route, hosting log disclosures and optional browser-store account/review. Check actual hosted CI results before distributing builds. No site, store listing, separate profile README or promotional content has been published by this work. See [deployment](launch/deployment.md).

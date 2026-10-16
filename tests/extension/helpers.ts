@@ -1,7 +1,7 @@
 import { chromium, expect, type BrowserContext, type Page, type Worker } from '@playwright/test';
 import path from 'node:path';
-export async function launch() {
-  const extension = path.resolve('apps/extension/.output/chrome-mv3');
+export async function launch(extensionPath = 'apps/extension/.output/chrome-mv3') {
+  const extension = path.resolve(extensionPath);
   const context = await chromium.launchPersistentContext('', {
     channel: 'chromium',
     headless: true,

@@ -1,0 +1,165 @@
+---
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import Layout from '../layouts/Layout.astro';
+import extension from '../../../extension/package.json';
+const filename = `formpilot-${extension.version}-chrome.zip`;
+// Astro executes the bundled page from its output directory; the workspace cwd stays stable.
+const downloads = resolve('public/downloads');
+const available = existsSync(resolve(downloads, filename));
+const release = available
+  ? (JSON.parse(readFileSync(resolve(downloads, 'release.json'), 'utf8')) as {
+      bytes: number;
+      sha256: string;
+    })
+  : undefined;
+---
+
+<Layout
+  title="Download and install FormPilot"
+  description="Download the prebuilt FormPilot extension for desktop Chrome and Chromium browsers. Extract, load unpacked and start reviewing forms. No build tools needed."
+>
+  <div class="page-heading">
+    <h1>Your next form starts here.</h1>
+    <p>
+      Download FormPilot, add it to your browser, and save your first profile. No account or build
+      tools needed.
+    </p>
+  </div>
+  <article class="prose">
+    <section class="panel" aria-labelledby="download-title" style="padding:24px;margin-bottom:32px">
+      <span class="pill">Desktop Chromium · v{extension.version}</span>
+      <h2 id="download-title" style="margin-top:16px">
+        Ready to add to Chrome
+      </h2>
+      <p>
+        A small ZIP containing the complete extension. Extract it, then use your browser’s Load
+        unpacked option.
+      </p>
+      {available && release ? (
+        <>
+          <p>
+            <a class="button" href={`/downloads/${filename}`} download={filename}>
+              Download FormPilot v{extension.version}
+            </a>
+          </p>
+          <p class="small muted">
+            ZIP · {Math.round(release.bytes / 1024)} KB · No Node.js or npm required
+          </p>
+          <p class="small">
+            <a href="/downloads/INSTALL.txt" download>
+              Installation instructions
+            </a>{' '}
+            ·{' '}
+            <a href="/downloads/SHA256SUMS.txt" download>
+              SHA-256 checksum
+            </a>
+          </p>
+          <details>
+            <summary>Verify this download</summary>
+            <p class="small">
+              Compare this SHA-256 checksum with the downloaded ZIP. It checks file integrity; it is
+              not a browser-store signature.
+            </p>
+            <code style="overflow-wrap:anywhere;word-break:break-all">{release.sha256}</code>
+          </details>
+        </>
+      ) : (
+        <p>
+          The package has not been generated in this source checkout. Run{' '}
+          <code>npm run package:extension</code>, or follow the source-build instructions below.
+        </p>
+      )}
+    </section>
+
+    <h2>Install in four steps</h2>
+    <ol>
+      <li>
+        <strong>Extract the ZIP.</strong> Keep the extracted folder somewhere permanent, such as
+        Documents/FormPilot. The folder must contain <code>manifest.json</code>.
+      </li>
+      <li>
+        <strong>Open the extensions page.</strong> Type <code>chrome://extensions</code> in Chrome’s
+        address bar. Use <code>edge://extensions</code> for Edge or <code>brave://extensions</code>{' '}
+        for Brave.
+      </li>
+      <li>
+        <strong>Turn on Developer mode.</strong> Click <strong>Load unpacked</strong> and select the
+        extracted folder, not the ZIP file.
+      </li>
+      <li>
+        <strong>Pin FormPilot and save a profile.</strong> Choose Create your first profile, or try
+        the fictional sample in profile settings.
+      </li>
+    </ol>
+    <p>
+      This follows the documented{' '}
+      <a href="https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked">
+        Chrome
+      </a>{' '}
+      and{' '}
+      <a href="https://learn.microsoft.com/en-us/microsoft-edge/extensions/getting-started/extension-sideloading">
+        Edge
+      </a>{' '}
+      installation flows. Browser or organization policies may disable Developer mode.
+    </p>
+
+    <h2>Which browsers can use it?</h2>
+    <ul>
+      <li>
+        <strong>Chrome / Chromium:</strong> the tested build target. Chrome 120+ is the declared API
+        minimum; the exact tested version is recorded in the repository’s QA report.
+      </li>
+      <li>
+        <strong>Edge and Brave:</strong> the same Chromium package is intended for these browsers,
+        but they have not been independently tested here.
+      </li>
+      <li>
+        <strong>Firefox, Safari and mobile browsers:</strong> this package does not support them.
+      </li>
+    </ul>
+    <p>
+      There is no store listing yet. This download needs the manual steps above. One-click
+      installation and automatic store updates require a published browser-store release.
+    </p>
+
+    <h2>Try your first reviewed fill</h2>
+    <p>
+      Use the fictional sample profile on the <a href="/forms/event/">event registration demo</a>.
+      Click the FormPilot toolbar icon, then <strong>Review this page → Scan page</strong>. Review
+      the suggestions and choose <strong>Fill selected fields</strong>. The form stays unsubmitted.
+    </p>
+    <p>
+      Edit one filled field, then undo: your later edit should remain untouched.{' '}
+      <a href="/demo/">Try the interactive playground</a> if you want to explore before installing.
+    </p>
+
+    <h2>Updating or removing</h2>
+    <p>
+      Keep the extracted folder in place. To update, export a profile backup, replace the files in
+      that same folder, click Reload on the extension’s settings card, and refresh your form tab.
+      Reopen review from the toolbar. Do not remove the installed extension first: moving to a new
+      folder can create a different extension identity and separate storage.
+    </p>
+    <p>
+      Unpacked builds do not update automatically. Removing the extension normally removes its
+      browser-local data. Exported profile files remain wherever you saved them and contain readable
+      personal information.
+    </p>
+
+    <h2>Prefer to build from source?</h2>
+    <p>Use Node 22.22.x or 24 LTS and npm 10+. From the repository root:</p>
+    <pre><code>npm ci{ '\n' }npm run build</code></pre>
+    <p>
+      This creates the unpacked extension at <code>apps/extension/.output/chrome-mv3/</code>, the
+      shareable ZIP and checksum at <code>dist/releases/</code>, and the website at{' '}
+      <code>apps/website/dist/</code>. To generate just the extension package, run{' '}
+      <code>npm run package:extension</code>. Nothing is published by either command.
+    </p>
+    <p>
+      Read <a href="/privacy/">privacy</a> and{' '}
+      <a href="/limitations/">troubleshooting and limitations</a> before filling details into a
+      website.
+    </p>
+  </article>
+</Layout>

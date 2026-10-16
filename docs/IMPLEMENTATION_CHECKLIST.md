@@ -14,4 +14,17 @@
 - [x] Repository, architecture, privacy, threat model, contribution and launch docs.
 - [x] Final clean build, responsive inspection, and evidence report.
 
-External publication is intentionally outside this task. No account/domain/store has been supplied.
+The repository identity is faizalimam00/FORM-PILOT, maintained by Faizal Imam. Website hosting and store publication remain external steps; no website domain or store listing is configured.
+
+## Prebuilt distribution follow-up
+
+- [x] Generate a versioned, ready-to-extract Chromium ZIP with installation instructions and checksums.
+- [x] Add website download links and accurate browser compatibility instructions.
+- [x] Verify the downloaded ZIP by loading its extracted contents in Chromium.
+- [x] Include build artifacts in CI without publishing a release.
+
+## Repository identity
+
+- [x] Apply Faizal Imam and faizalimam00/FORM-PILOT across README, website, package metadata and launch drafts.
+- [x] Replace incomplete template links with real repository/documentation links and local-demo instructions.
+- [x] Confirm actual repository/security status and rebuild the downloadable package.

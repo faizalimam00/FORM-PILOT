@@ -38,4 +38,4 @@ Delete individual profiles, remembered mappings or all FormPilot data in setting
 
 ## Questions and security reports
 
-The creator is Faizal Imam. Before public release, configure the repository’s private security reporting route as described in SECURITY.md. Do not put personal profiles, exports, tokens or exploit details into public issues. See [limitations](/limitations/) and [the architecture documentation](/docs/) for the technical boundaries.
+The creator is [Faizal Imam (@faizalimam00)](https://github.com/faizalimam00). Follow the repository’s [security reporting policy](https://github.com/faizalimam00/FORM-PILOT/blob/main/SECURITY.md) to arrange a private channel. Private vulnerability reporting is currently disabled; a public contact request must contain no sensitive details. Do not put personal profiles, exports, tokens or exploit details into public issues. See [limitations](/limitations/) and [the architecture documentation](/docs/) for the technical boundaries.

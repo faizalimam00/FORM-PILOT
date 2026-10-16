@@ -26,5 +26,18 @@
     "@astrojs/check": "^0.9.6",
     "@tailwindcss/vite": "^4.2.0",
     "tailwindcss": "^4.2.0"
+  },
+  "author": {
+    "name": "Faizal Imam",
+    "url": "https://github.com/faizalimam00"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faizalimam00/FORM-PILOT.git"
+  },
+  "homepage": "https://github.com/faizalimam00/FORM-PILOT",
+  "bugs": {
+    "url": "https://github.com/faizalimam00/FORM-PILOT/issues"
   }
 }

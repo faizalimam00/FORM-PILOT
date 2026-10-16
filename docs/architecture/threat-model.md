@@ -31,4 +31,4 @@ Dependency audit, static type/lint checks, unit/DOM tests and real extension tes
 
 ## Safe reporting
 
-Use a fictional minimal form and reproduce on a local origin. Do not include live profile JSON, credentials or sensitive page screenshots. Follow SECURITY.md; its private contact route is deliberately a release setup item until an actual repository or contact is supplied.
+Use a fictional minimal form and reproduce on a local origin. Do not include live profile JSON, credentials or sensitive page screenshots. Follow [SECURITY.md](../../SECURITY.md). The repository’s private vulnerability reporting is currently disabled; request a private channel through the documented public contact-request link without disclosing sensitive details.

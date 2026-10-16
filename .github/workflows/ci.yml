@@ -25,6 +25,12 @@ jobs:
       - run: npm run test:browsers -- --with-deps
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
+        with:
+          name: formpilot-browser-downloads
+          path: dist/releases/
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: fictional-data-browser-test-results

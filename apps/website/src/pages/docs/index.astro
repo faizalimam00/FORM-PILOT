@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { site } from '../../site';
 const links = [
-  ['/install/', 'Install & run', 'Build from source and load the unpacked Chromium extension.'],
+  ['/install/', 'Install & run', 'Download the Chromium package or build it from source.'],
   [
     '/how-it-works/',
     'The review workflow',
@@ -48,7 +49,10 @@ const links = [
       The repository includes architecture and threat-model documents, labelled fixtures, DOM
       integration tests and real extension browser tests. Run <code>npm run check</code>,{' '}
       <code>npm run test:e2e</code> and <code>npm run benchmark</code> from the repository root.
-      CONTRIBUTING.md explains the expectations for adding aliases, controls and tests.
+      <a href={`${site.repository}/blob/main/CONTRIBUTING.md`}>The contribution guide</a> explains
+      the expectations for adding aliases, controls and tests. Explore the{' '}
+      <a href={`${site.repository}/tree/main/docs/architecture`}>architecture documentation</a> or{' '}
+      <a href={`${site.repository}/issues`}>report a reproducible issue</a>.
     </p>
   </section>
 </Layout>

@@ -12,3 +12,4 @@ playwright-report/
 *.log
 .test
 .test-results
+apps/website/public/downloads/

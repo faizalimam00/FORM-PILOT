@@ -4,6 +4,8 @@
 
 Initial local release candidate; not published to a browser store.
 
+- Ready-to-extract Chromium ZIP, installation instructions, SHA-256 checksum, website download page and CI build artifacts. No compilation required for end users.
+
 - WXT Manifest V3 extension with explicit scanning and a persistent review window.
 - Personal/work profiles, custom nonsensitive fields, derived full name, versioned imports/exports and deletion controls.
 - Deterministic semantic matching with explanations, abstention, conservative exclusions and exact-origin remembered corrections.

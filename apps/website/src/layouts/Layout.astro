@@ -19,7 +19,7 @@ const schema = {
   description:
     'A local-first form autofill extension with semantic field matching and explicit review.',
   license: 'https://opensource.org/license/mit',
-  author: { '@type': 'Person', name: 'Faizal Imam' },
+  author: { '@type': 'Person', name: site.creator, url: site.github },
   ...(site.origin ? { url: site.origin } : {}),
   ...(site.repository ? { codeRepository: site.repository } : {}),
 };

@@ -16,6 +16,6 @@ There is no AI service behind the matching engine. Labels and autocomplete metad
 
 Useful releases, transparent engineering decisions, reproducible experiments and maintenance that responds to real issues. Following the project should help you understand how a browser extension handles permissions, DOM changes, controlled inputs and recoverable edits.
 
-Account details are intentionally configurable. A new GitHub username, public repository URL and deployment URL have not been supplied yet. The maintainer will add those links before public launch; this page does not infer an older account.
+Find me on GitHub as [@faizalimam00](https://github.com/faizalimam00). Explore the [FormPilot source code](https://github.com/faizalimam00/FORM-PILOT), read the [architecture documentation](https://github.com/faizalimam00/FORM-PILOT/tree/main/docs/architecture), or [report a reproducible issue](https://github.com/faizalimam00/FORM-PILOT/issues).
 
 Explore [how FormPilot works](/how-it-works/), [the measured benchmark](/benchmarks/), and [the engineering notes](/articles/).
