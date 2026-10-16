@@ -45,7 +45,7 @@ test('production manifest has only user-triggered access and trusted storage', a
   }, tab);
   expect(read[0]?.result).toBe('blocked');
 });
-test('actual toolbar → scan → reviewed fill → safe partial undo; no submission', async () => {
+test('shared review → scan → reviewed fill → safe partial undo; no submission', async () => {
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4321/forms/event/');
   const review = await reviewPage(context, page, id);

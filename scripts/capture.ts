@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
-import { mkdirSync, copyFileSync, writeFileSync } from 'node:fs';
-import { launch, sample, reviewPage, trigger } from '../tests/extension/helpers';
+import { mkdirSync, copyFileSync, writeFileSync, readFileSync } from 'node:fs';
+import { launch, sample, trigger } from '../tests/extension/helpers';
 try {
   process.loadEnvFile('.env.test.local');
 } catch {
@@ -19,25 +19,56 @@ export async function captureProduct() {
     const response = await form.goto('http://127.0.0.1:4321/forms/event/');
     expect(response?.status()).toBe(200);
     await expect(form.locator('#event-first')).toBeVisible();
-    const review = await reviewPage(context, form, id);
-    await review.emulateMedia({ reducedMotion: 'reduce' });
-    await review.setViewportSize({ width: 470, height: 790 });
-    await review.getByRole('button', { name: 'Scan page', exact: true }).click();
-    await review.getByText('Scan complete. No form values were changed.').waitFor();
-    await review.locator('.field-card details summary').first().click();
-    await review.evaluate(() => scrollTo(0, 0));
-    await review.screenshot({ path: 'apps/website/public/product-review.png' });
+    const popup = await trigger(context, form, id);
+    await popup.request('Emulation.setEmulatedMedia', {
+      features: [
+        { name: 'prefers-color-scheme', value: 'light' },
+        { name: 'prefers-reduced-motion', value: 'reduce' },
+      ],
+    });
+    await popup.evaluate(readFileSync('node_modules/axe-core/axe.min.js', 'utf8'));
+    const checkPopup = async () => {
+      expect(
+        await popup.evaluate(
+          `axe.run({runOnly: {type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa']}}).then(result => result.violations.map(v => ({id: v.id, nodes: v.nodes.map(n => n.target)})))`,
+        ),
+      ).toEqual([]);
+    };
+    await checkPopup();
+    const screenshot = async (file: string) => {
+      await popup.evaluate(
+        'new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))',
+      );
+      const captured = await popup.request('Page.captureScreenshot', { format: 'png' });
+      const bytes = Buffer.from(String(captured.data), 'base64');
+      writeFileSync(file, bytes);
+      return `${bytes.readUInt32BE(16)}x${bytes.readUInt32BE(20)}`;
+    };
+    const popupDimensions = await screenshot('docs/assets/launcher.png');
+    expect(await popup.evaluate('document.documentElement.scrollWidth <= innerWidth')).toBe(true);
+    await popup.evaluate("document.querySelector('button.primary').click()");
+    await expect.poll(() => popup.evaluate('document.body.innerText')).toContain('fields filled.');
+    expect(
+      await popup.evaluate(
+        `Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === 'Undo last fill').getBoundingClientRect().bottom <= innerHeight`,
+      ),
+    ).toBe(true);
+    await checkPopup();
+    const filledDimensions = await screenshot('apps/website/public/product-review.png');
     copyFileSync('apps/website/public/product-review.png', 'docs/assets/product-review.png');
     copyFileSync('apps/website/public/product-review.png', 'apps/website/dist/product-review.png');
-    await review.getByRole('button', { name: 'Toggle color theme' }).click();
-    await review.screenshot({ path: 'docs/assets/review-dark.png' });
-    await review.getByRole('button', { name: 'Toggle color theme' }).click();
-    await review.close();
-    const popup = await trigger(context, form, id);
-    const captured = await popup.request('Page.captureScreenshot', { format: 'png' });
-    const popupBytes = Buffer.from(String(captured.data), 'base64');
-    const popupDimensions = `${popupBytes.readUInt32BE(16)}x${popupBytes.readUInt32BE(20)}`;
-    writeFileSync('docs/assets/launcher.png', popupBytes);
+    await popup.evaluate(
+      `Array.from(document.querySelectorAll('button')).find(b => b.textContent.trim() === 'Review fields & corrections').click()`,
+    );
+    await expect.poll(() => popup.evaluate('document.body.innerText')).toContain('Scan complete.');
+    expect(await popup.evaluate('document.documentElement.scrollWidth <= innerWidth')).toBe(true);
+    await checkPopup();
+    const reviewDimensions = await screenshot('docs/assets/popup-review.png');
+    await popup.evaluate(
+      `document.querySelector('button[aria-label="Toggle color theme"]').click()`,
+    );
+    await checkPopup();
+    await screenshot('docs/assets/review-dark.png');
     await popup.close();
     const site = await context.newPage();
     await site.emulateMedia({ reducedMotion: 'reduce' });
@@ -68,7 +99,8 @@ export async function captureProduct() {
           source: 'Production extension and Astro static preview',
           profile: 'Fictional Alex Morgan only',
           viewports: {
-            review: '470x790',
+            review: reviewDimensions,
+            filled: filledDimensions,
             popup: popupDimensions,
             options: '1280x900',
             desktop: '1440x1000',

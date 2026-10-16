@@ -1,11 +1,12 @@
 {
-  "capturedAt": "2026-10-16T15:28:13.559Z",
+  "capturedAt": "2026-10-16T15:49:11.678Z",
   "browser": "153.0.8010.12",
   "source": "Production extension and Astro static preview",
   "profile": "Fictional Alex Morgan only",
   "viewports": {
-    "review": "470x790",
-    "popup": "360x488",
+    "review": "380x498",
+    "filled": "380x485",
+    "popup": "380x487",
     "options": "1280x900",
     "desktop": "1440x1000",
     "mobile": "375x812"

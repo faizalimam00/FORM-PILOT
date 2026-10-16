@@ -1,11 +1,10 @@
 # Architecture
 
-FormPilot 0.1 is a local-first, deterministic, review-before-fill extension and a static demonstration website. There is no backend, authentication, subscription, analytics or remote matching service.
+FormPilot 0.1 is a local-first, deterministic, user-triggered autofill extension and a static demonstration website. There is no backend, authentication, subscription, analytics or remote matching service.
 
 ```mermaid
 flowchart LR
-  U[User invokes toolbar] --> L[Compact launcher]
-  L --> R[Persistent extension review window]
+  U[User invokes toolbar] --> R[Compact fill and optional review popup]
   O[Profile options] <--> B[Validated background storage writer]
   B <--> S[Trusted extension-local storage]
   S --> R
@@ -24,22 +23,24 @@ flowchart LR
 - `dom-adapter`: isolated document scanner and mutation controller. Shared by the injected extension bundle and controlled website playground. No storage, profile or networking API.
 - `form-fixtures`: five scenario definitions, development examples and a separate fixed evaluation file.
 - `ui`: shared visual tokens, semantic controls, review rows and explicit selection behavior.
-- `extension`: WXT MV3 launcher, unlisted review page, options, background storage writer and injected unlisted detector script.
+- `extension`: WXT MV3 fill/review popup, unlisted review test harness, options, background storage writer and injected unlisted detector script.
 - `website`: Astro static routes with React islands only where interaction helps. Documentation and articles remain crawlable HTML.
 
-## Why a review window
+## Direct toolbar workflow
 
-A toolbar popup closes when focus moves to a form. A standalone 470 × 840 review window retains the session while the user checks the page. It avoids requiring a side-panel API. Its target tab ID is fixed by the launcher. It never silently switches to whichever tab becomes active. Open a fresh review from another tab’s toolbar action when changing destinations. Use one review window per target tab.
+The toolbar popup has a saved-profile selector and **Fill form** button. Clicking it scans the invoked tab, matches locally and fills all empty, high-confidence controls with compatible profile values. Uncertain suggestions, exclusions and existing values remain unchanged. There is no `windows.create` call and no new page. **Review fields & corrections** opens the shared review controls inside the same popup for explicit mapping changes and replacements.
+
+The target tab is fixed on the first explicit operation. Closing the popup clears temporary scan and undo state; Undo is available while it stays open, for up to five minutes. This is a deliberate compact workflow, with the browser's normal popup lifetime. The unlisted `review.html` route remains a shared-component integration test harness; the product does not launch it.
 
 ## Permissions
 
 | Permission  | Purpose                                             | Boundary                                                |
 | ----------- | --------------------------------------------------- | ------------------------------------------------------- |
 | `activeTab` | Temporary access to the tab the user invoked        | User gesture; cross-origin navigation revokes access    |
-| `scripting` | Inject bundled detector after Scan page             | Top frame, isolated world, no persistent content script |
+| `scripting` | Inject detector after Fill form or explicit review  | Top frame, isolated world, no persistent content script |
 | `storage`   | Profiles and remembered mappings in `storage.local` | Access level set to `TRUSTED_CONTEXTS`; no sync         |
 
-No `tabs` permission, persistent host permissions, external connections, web-accessible resources or remote scripts. Windows creation and querying nonsensitive tab attributes do not require the `tabs` permission. The review requires the temporary grant to read the target URL and inject.
+No `tabs` permission, persistent host permissions, external connections, web-accessible resources or remote scripts. Querying nonsensitive tab attributes does not require the `tabs` permission. The popup requires the temporary grant to read the target URL and inject.
 
 ## Detection and identity
 
@@ -65,7 +66,7 @@ Exports contain profiles and active selection, not memories. Merge updates ident
 
 The most recent fill stores only changed elements, prior values, written values, fingerprint and an edit revision. Undo requires the same live control/fingerprint, the written value and unchanged event revision. Later input/change events cause a skip even if the value was changed away and back. Silent programmatic edits returning to the exact same value cannot be detected; document this limit.
 
-Undo expires after five minutes. Scan data expires after 15 minutes. A new scan, closing review, document pagehide or reinjection clears the controller. A new fill replaces the undo batch. Timers can be delayed in suspended tabs. In-memory cleanup is not cryptographic erasure.
+Undo expires after five minutes. Scan data expires after 15 minutes. A new scan, closing the popup or test review, document pagehide or reinjection clears the controller. A new fill replaces the undo batch. Timers can be delayed in suspended tabs. In-memory cleanup is not cryptographic erasure.
 
 ## Build and deployment
 

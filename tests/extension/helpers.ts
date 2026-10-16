@@ -93,7 +93,10 @@ export async function trigger(context: BrowserContext, page: Page, id: string) {
   };
   await expect
     .poll(() => evaluate("document.querySelector('button.primary')?.textContent"))
-    .toBe('Review this page');
+    .toBe('Fill form');
+  await expect
+    .poll(() => evaluate("document.querySelector('button.primary')?.disabled"))
+    .toBe(false);
   return {
     evaluate,
     request,
@@ -102,10 +105,11 @@ export async function trigger(context: BrowserContext, page: Page, id: string) {
 }
 export async function reviewPage(context: BrowserContext, page: Page, id: string) {
   const popup = await trigger(context, page, id);
-  const opened = context.waitForEvent('page', (p) => p.url().includes('review.html'));
-  await popup.evaluate("document.querySelector('button.primary').click()");
-  const review = await opened;
-  await review.waitForLoadState();
+  // Explicit test harness for the shared review component. The product opens no window.
+  await popup.close();
+  const tab = await targetId(context.serviceWorkers()[0]!, page);
+  const review = await context.newPage();
+  await review.goto(`chrome-extension://${id}/review.html?tab=${tab}`);
   return review;
 }
 export async function targetId(worker: Worker, page: Page) {

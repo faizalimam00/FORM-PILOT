@@ -59,8 +59,10 @@ INSTALL
 3. Turn on Developer mode. Click Load unpacked.
 4. Select the extracted folder containing manifest.json (not the ZIP file).
 5. Pin FormPilot. Create and save a profile, or try the fictional sample.
-6. On a web form, click FormPilot > Review this page > Scan page.
-   Review suggestions, select fields and click Fill selected fields. The form is not submitted.
+6. On a web form, click FormPilot > Fill form. All empty high-confidence matches fill together.
+   No new window opens. Existing values, uncertain matches and sensitive fields are skipped.
+   Optional Review fields & corrections stays in the popup. The form is never submitted.
+   Undo works while the popup stays open; closing it or scanning again clears undo.
 
 COMPATIBILITY
 The production package is tested in Chromium; see docs/QA_REPORT.md in the source repository
@@ -72,7 +74,7 @@ may prevent Developer mode. There is no published store listing or automatic ins
 UPDATES
 Keep this folder in place. Export a profile backup before updating; it contains personal information.
 Replace the files in the SAME folder, click Reload on the extension card, refresh the web page,
-and reopen review. Do not remove the installed extension first. A new folder can create a new extension
+and reopen the toolbar popup. Do not remove the installed extension first. A new folder can create a new extension
 identity and separate storage. There is no automatic update service for this unpacked build.
 
 PRIVACY

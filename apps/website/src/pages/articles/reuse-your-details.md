@@ -19,7 +19,7 @@ The phone field is used as entered. Country calling code is separate metadata fo
 
 ## Separate personal and work contexts
 
-A work email can be appropriate on a professional application and inappropriate on a personal registration. Two named profiles make that decision explicit. FormPilot lets you choose an active profile and change the selection in its review window.
+A work email can be appropriate on a professional application and inappropriate on a personal registration. Two named profiles make that decision explicit. FormPilot lets you choose an active profile and change the selection in its toolbar popup.
 
 Do not rely on the profile name alone. Look at the values in the suggestions, especially when switching between contexts. Profile edits must be saved before they are used. Changing a saved profile invalidates the current review so the next scan uses current details.
 

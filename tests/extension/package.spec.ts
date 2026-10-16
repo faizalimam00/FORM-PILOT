@@ -5,9 +5,11 @@ import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync } from 'nod
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { unzipSync } from 'fflate';
-import { launch, sample, reviewPage } from './helpers';
+import { launch, sample, trigger } from './helpers';
 
-test('downloaded ZIP loads in Chromium and performs a reviewed fill', async ({ request }) => {
+test('downloaded ZIP loads in Chromium and fills directly from its toolbar popup', async ({
+  request,
+}) => {
   const release = (await (await request.get('/downloads/release.json')).json()) as {
     filename: string;
     sha256: string;
@@ -67,11 +69,12 @@ test('downloaded ZIP loads in Chromium and performs a reviewed fill', async ({ r
       await page.screenshot({ path: `test-results/install-${width}.png`, fullPage: true });
     }
     await page.goto('http://127.0.0.1:4321/forms/event/');
-    const review = await reviewPage(app.context, page, app.id);
-    await review.getByRole('button', { name: 'Scan page', exact: true }).click();
-    await expect(review.locator('.field-card')).toHaveCount(10);
+    const popup = await trigger(app.context, page, app.id);
+    const pagesBefore = app.context.pages().length;
     await expect(page.locator('#event-first')).toHaveValue('');
-    await review.getByRole('button', { name: /Fill \d+ selected fields/ }).click();
+    await popup.evaluate("document.querySelector('button.primary').click()");
+    await expect.poll(() => popup.evaluate('document.body.innerText')).toContain('fields filled.');
+    expect(app.context.pages()).toHaveLength(pagesBefore);
     await expect(page.locator('#event-first')).toHaveValue('Alex');
     await expect(page.locator('#event-email')).toHaveValue('alex.morgan@example.com');
     expect(page.url()).toContain('/forms/event/');

@@ -11,7 +11,12 @@ export default defineUnlistedScript(() => {
     sender,
     respond,
   ) => {
-    if (!trustedSender(sender, browser.runtime.id, browser.runtime.getURL('/'), ['/review.html']))
+    if (
+      !trustedSender(sender, browser.runtime.id, browser.runtime.getURL('/'), [
+        '/review.html',
+        '/popup.html',
+      ])
+    )
       return false;
     const command = commandSchema.safeParse(raw);
     if (!command.success) {

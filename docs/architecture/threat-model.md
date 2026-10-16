@@ -10,7 +10,7 @@ A malicious website may manipulate labels, autocomplete metadata, options or con
 
 | Threat                                      | Implemented control                                                                           | Residual boundary                                                             |
 | ------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Silent background collection                | No persistent content scripts or all-site hosts; explicit scan                                | Invoked pages provide metadata, which can itself contain information          |
+| Silent background collection                | No persistent content scripts or all-site hosts; explicit Fill form or review action          | Invoked pages provide metadata, which can itself contain information          |
 | Entire profile exposed to site-related code | Profiles stay in trusted extension storage; selected values only to detector                  | A website reads any value actually filled                                     |
 | Forged/malformed commands                   | Sender ID + exact allowlisted extension-page URL + top frame; strict Zod message validation   | Trusted extension code remains privileged                                     |
 | Malicious import/prototype keys             | Strict object schemas, UUID/URL/email/type limits, 500 KB import bound, no HTML rendering     | User can place sensitive text in an ordinary free-text property               |
@@ -22,6 +22,8 @@ A malicious website may manipulate labels, autocomplete metadata, options or con
 | Concurrent editor overwrites                | Serialized service-worker writes with revision check                                          | Invalid local data requires troubleshooting, not an automatic reset           |
 | Remote code execution through product       | Self-only MV3 CSP, no eval, no remote code, React escaping                                    | Dependency supply chain and developer tools remain trusted                    |
 | Unbounded input                             | Profile, custom field, memory, message, scan and option limits                                | Extremely large/hostile DOMs still cost scan time                             |
+
+The direct Fill form button skips uncertain and nonempty controls but does not require inspecting each high-confidence suggestion. High confidence is heuristic, not proof of a trustworthy site. Optional review is available before filling.
 
 ## Operational controls
 

@@ -8,13 +8,13 @@ I like projects where the details matter: a clear interface, understandable beha
 
 ## Building: FormPilot
 
-**Your details. Your device. Every form, reviewed by you.**
+**Your details. Your device. Fill with a click. Stay in control.**
 
 FormPilot is a local-first browser extension for repetitive forms. Save a reusable profile, review explained field matches, and choose what to fill. Its first release uses deterministic semantic matching, with explicit uncertainty and guarded undo. No account, backend or paid AI API is required.
 
 [Explore FormPilot](https://github.com/faizalimam00/FORM-PILOT) · [Run the demo locally](https://github.com/faizalimam00/FORM-PILOT#try-it-locally) · [Read the docs](https://github.com/faizalimam00/FORM-PILOT/tree/main/docs)
 
-![FormPilot review window with fictional sample details](https://raw.githubusercontent.com/faizalimam00/FORM-PILOT/main/docs/assets/product-review.png)
+![FormPilot toolbar popup with fictional sample details](https://raw.githubusercontent.com/faizalimam00/FORM-PILOT/main/docs/assets/product-review.png)
 
 ## What I share
 

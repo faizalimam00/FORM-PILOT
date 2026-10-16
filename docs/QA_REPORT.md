@@ -2,6 +2,20 @@
 
 Verified locally on 2026-10-16. This is evidence from the implementation workspace, not a claim of a published release, successful hosted CI run, universal browser support or an independent security audit.
 
+## Direct toolbar filling (current build)
+
+The toolbar now fills all empty, high-confidence matches with **Fill form**. It opens no new tab or window. Results, profile switching, Undo and optional **Review fields & corrections** are in the same popup. Existing values, uncertain suggestions and excluded fields remain untouched. Undo expires on popup close, rescan, another fill or after five minutes.
+
+The final ZIP is 189,704 bytes; its SHA-256 is `28d2d8b4f9e2b4566d1c743bf89f977f70eecf2b1eb062551c7bf02112f15dfc`. It contains the production manifest with the same three permissions. The package test downloaded this archive, verified its checksum and contents, loaded it in Chromium and filled directly from the actual toolbar popup without another page.
+
+`npm run check` passed: lint, strict types, 70 unit/DOM integration tests and both production builds. `npm run test:e2e` passed all **21 browser tests in 44.8 seconds** on Chromium 153.0.8010.12. The real action-popup tests cover direct filling, no extra pages, existing values, uncertain/sensitive exclusions, inline correction, React-controlled and newly rendered controls, partial undo, restricted pages, active profile switching and a page with no form. The shared `review.html` route remains an explicitly opened test harness for detailed review regressions; the product no longer launches it.
+
+Native popup captures were inspected at 380 × 487 (initial), 380 × 485 (filled) and 380 × 498 (advanced review), in light/dark mode. Fill and Undo are visible without scrolling; long review/result lists scroll inside the popup. Actual popup axe WCAG A/AA checks passed in initial, filled, review and dark-review states, with no horizontal overflow. The updated website was inspected at desktop 1440px and mobile 375px. README and homepage use the new real toolbar capture. Benchmark logic is unchanged; earlier measured results remain applicable to the matcher, not browser latency.
+
+A redirected browser-test invocation initially could not start its local server in the restricted shell. The normal local preview and direct `npm run test:e2e` invocation worked. Two test assertions were corrected during development: singular “1 field” feedback, and waiting until profile loading enables the toolbar button before selecting a profile.
+
+The sections below record earlier verification milestones; their window descriptions and package sizes describe those earlier builds.
+
 ## Prebuilt download follow-up
 
 The production build now generates `dist/releases/formpilot-0.1.0-chrome.zip` (189,350 bytes), installation instructions, release metadata and a SHA-256 checksum. The static website includes the same files under `/downloads/`. The archive contains compiled extension files, instructions and license notices; no personal profiles, local settings, source maps or development dependencies.

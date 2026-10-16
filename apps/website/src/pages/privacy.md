@@ -14,11 +14,13 @@ FormPilot does not encrypt ordinary browser storage. It is not a defense against
 
 ## What a scan reads
 
-After your explicit scan, the extension reads field labels, accessibility metadata, IDs, names, placeholders, autocomplete tokens, section headings and native dropdown options in the top-level document. For eligible controls, it also checks whether a field contains a value. It does not read the values of excluded controls. The isolated content script temporarily retains eligible original values to protect them and support undo; those originals are not sent to the review window.
+After you click Fill form or Review fields & corrections, the extension reads field labels, accessibility metadata, IDs, names, placeholders, autocomplete tokens, section headings and native dropdown options in the top-level document. For eligible controls, it also checks whether a field contains a value. It does not read the values of excluded controls. The isolated content script temporarily retains eligible original values to protect them and support undo; those originals are not sent to the toolbar popup.
 
-The complete profile stays in the trusted extension context. The content script receives only selected fill values and target tokens. No profile matching data is sent to a server. Scans are bounded to 500 controls and expire after 15 minutes. A completed fill discards scan value snapshots and retains only the values needed to undo its changes; another fill requires a rescan. Undo values expire after five minutes, a new scan or fill, closing the review window, or leaving the document. Expiry is enforced in memory; browser scheduling can delay timer execution in suspended tabs.
+The complete profile stays in the trusted extension context. The content script receives only selected fill values and target tokens. No profile matching data is sent to a server. Scans are bounded to 500 controls and expire after 15 minutes. A completed fill discards scan value snapshots and retains only the values needed to undo its changes; another fill requires a rescan. Undo values expire after five minutes, a new scan or fill, closing the toolbar popup, or leaving the document. Expiry is enforced in memory; browser scheduling can delay timer execution in suspended tabs.
 
 ## What happens when you fill
+
+Fill form scans and fills empty, high-confidence matches in one action. For a scan without filling, use Review fields & corrections. Uncertain matches and existing values require explicit selection in that review view.
 
 A website can read values entered into its form, including values filled by FormPilot, before you submit. Website scripts may transmit them immediately. Only fill details into sites you trust. FormPilot itself does not submit forms, navigate forward, or make external AI calls.
 

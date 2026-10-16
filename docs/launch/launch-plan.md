@@ -18,7 +18,7 @@ The reason to follow Faizal Imam is ongoing useful releases, transparent enginee
 
 8. Publish an authorized concise release note with supported controls and limitations.
 9. Share the 60-second real demonstration in one appropriate channel after checking its rules.
-10. Write up activeTab and the persistent review-window choice, including its tab/session limitations.
+10. Write up activeTab and the direct-fill toolbar workflow, optional inline review and popup/session limitations.
 11. Publish the existing benchmark methodology and generated report. Include the incorrect review-level proposal, synthetic-data limits and runtime denominator.
 12. Triage actual issues. Request fictional minimal reproductions, not profile exports.
 13. Fix the most consequential reproducible issue with regression coverage.

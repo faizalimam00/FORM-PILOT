@@ -8,7 +8,8 @@ export default defineConfig({
   manifest: {
     name: 'FormPilot',
     homepage_url: project.homepage,
-    description: 'Your details. Your device. Every form, reviewed by you.',
+    description:
+      'Fill forms with your local profile. One click for confident matches, optional review for the rest.',
     version: '0.1.0',
     minimum_chrome_version: '120',
     permissions: ['activeTab', 'scripting', 'storage'],

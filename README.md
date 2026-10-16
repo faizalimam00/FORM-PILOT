@@ -2,13 +2,13 @@
 
 **Fill the familiar. Review the uncertain.**
 
-A local-first browser extension for reusing your own details across repetitive forms. Save personal and work profiles, explicitly inspect a page, review explained suggestions, select fields and fill them—without submitting the form.
+A local-first browser extension for reusing your own details across repetitive forms. Save personal and work profiles, open the toolbar popup and click **Fill form**. All empty, high-confidence matches fill together without opening a new page or submitting the form. Optional field review and corrections stay inside the same popup.
 
-**Your details. Your device. Every form, reviewed by you.**
+**Your details. Your device. Fill with a click. Stay in control.**
 
 Built by [Faizal Imam](https://github.com/faizalimam00) · [Repository](https://github.com/faizalimam00/FORM-PILOT) · [Documentation](https://github.com/faizalimam00/FORM-PILOT/tree/main/docs) · [Report a bug](https://github.com/faizalimam00/FORM-PILOT/issues)
 
-![Actual FormPilot review window using Alex Morgan’s fictional sample profile](docs/assets/product-review.png)
+![Actual FormPilot toolbar popup using Alex Morgan’s fictional sample profile](docs/assets/product-review.png)
 
 Version 0.1 is a local, unpacked Chromium release. No account, subscription, backend, analytics or paid AI API. Matching is deterministic semantic matching. The source is available at [faizalimam00/FORM-PILOT](https://github.com/faizalimam00/FORM-PILOT). The website runs locally; no hosted demo or browser-store listing is available yet.
 
@@ -52,10 +52,10 @@ Standalone extension demos:
 2. Open `chrome://extensions`, enable **Developer mode**, choose **Load unpacked**.
 3. Select **`apps/extension/.output/chrome-mv3/`** and pin FormPilot.
 4. Open profile settings. Create a profile or **Try a fictional sample**, then save.
-5. Visit a standalone demo form. Click FormPilot → **Review this page** → **Scan page**.
-6. Review the proposed values and reasons, select fields, and choose **Fill selected fields**.
+5. Visit a form. Click the FormPilot toolbar icon, choose your profile and click **Fill form**.
+6. Matching empty fields fill immediately. No new tab or window opens. Use **Review fields & corrections** only if you want to inspect or change mappings.
 
-Keep the review window open while checking the form. Undo is available for the last fill for five minutes, skips subsequent edits, and is cleared on rescan. FormPilot never submits or advances a form.
+Use **Undo last fill** while the popup is still open (up to five minutes). Closing the popup, rescanning or filling again clears the previous undo. Uncertain matches, sensitive fields and existing values are skipped; explicit replacements require the optional review controls. FormPilot never submits or advances a form.
 
 ## What works
 
@@ -63,7 +63,8 @@ Keep the review window open while checking the form. Undo is available for the l
 - Versioned JSON export, validated import preview, explicit merge/replace, individual and all-data deletion.
 - Autocomplete, explicit/wrapping labels, accessibility metadata, normalized aliases, type compatibility and section context.
 - High confidence, needs review and no reliable match, with explanations and warnings. These are not probabilities.
-- Per-field corrections, explicit selection, filters, page highlighting and honest fill outcomes.
+- One-click filling of all eligible high-confidence matches directly in the toolbar popup.
+- Optional inline review: per-field corrections, explicit selection, filters, page highlighting and honest fill outcomes.
 - Nonempty values protected by default; replacement requires opt-in and selection.
 - Live-element/session validation, React input/change handling and guarded undo.
 - Opt-in corrections remembered for an exact origin and matching form/field/section; inspect and delete them in settings.
@@ -77,7 +78,7 @@ Supported: native text, email, telephone and URL inputs, textareas and single na
 
 Excluded: hidden/disabled/read-only fields, passwords, OTP, payment and suspected sensitive fields, file uploads, CAPTCHA, checkboxes/radio buttons, consent, agreements, submit controls, number/date inputs and multiple selects. Unsupported: all iframes, open/closed shadow roots, rich-text editors and custom dropdowns. Labels/aliases are primarily English; country/region aliases are a documented subset. No universal compatibility claim.
 
-Scans are bounded to 500 controls and 1,000 options per select. Use one review window per target tab. Protected browser/store pages cannot be scanned. See the [website limitations source](apps/website/src/pages/limitations.md).
+Scans are bounded to 500 controls and 1,000 options per select. Protected browser/store pages cannot be scanned. See the [website limitations source](apps/website/src/pages/limitations.md).
 
 ## Privacy model
 
@@ -90,7 +91,7 @@ Permissions are limited to `activeTab`, `scripting` and `storage`; there are no 
 ## Architecture
 
 ```text
-apps/extension       WXT MV3 launcher, review window, profile options, isolated detector
+apps/extension       WXT MV3 toolbar fill/review popup, profile options, isolated detector
 apps/website         Astro static site, docs, articles, React demos and playground
 packages/profile-schema   Versioned Zod schemas and profile operations
 packages/matching-engine  Pure deterministic matching, exclusions and normalization
@@ -101,7 +102,7 @@ tests/integration         DOM, storage boundary and domain behavior
 tests/extension           Packaged-extension Chromium and website browser tests
 ```
 
-The review surface is a persistent window, so it stays available while you inspect the page without requiring a side-panel API. [Architecture details](docs/architecture/README.md).
+Filling and optional review share the compact toolbar popup. Profile editing opens settings only when requested. No side-panel API or separate review window is required. [Architecture details](docs/architecture/README.md).
 
 The monorepo uses **npm workspaces** and one authoritative lockfile, `package-lock.json`. React 19, WXT 0.21, Astro 7, Tailwind 4, Zod 4, TypeScript strict, Vitest 5 and Playwright are pinned by that lockfile. Use `npm ci` for a reproducible installation.
 
@@ -137,7 +138,7 @@ npm run package:extension   # Build the shareable ZIP, instructions and checksum
 
 Tests load the unchanged production manifest in a persistent Chromium context and trigger its actual toolbar action through Chromium’s extension debugging protocol. They do not grant all-site access or substitute playground checks for extension tests. `.env.test.local` can set `FORMPILOT_CHROMIUM_PATH` to an existing supported Chromium executable; it is ignored by Git. Default CI uses Playwright’s bundled browser.
 
-`npm run build` generates the extension package before building the website, so `/install/` serves a working download. Generated packages live in `dist/releases/` and `apps/website/public/downloads/` (ignored by Git), and are copied into the static site output. CI retains the tested download bundle as a workflow artifact without publishing a GitHub release. A browser test downloads the ZIP, verifies its checksum and production-file contents, then loads the extracted package and performs a real reviewed fill.
+`npm run build` generates the extension package before building the website, so `/install/` serves a working download. Generated packages live in `dist/releases/` and `apps/website/public/downloads/` (ignored by Git), and are copied into the static site output. CI retains the tested download bundle as a workflow artifact without publishing a GitHub release. A browser test downloads the ZIP, verifies its checksum and production-file contents, then loads the extracted package and performs a real one-click fill from its toolbar popup.
 
 For genuine captures, run a built website preview, then `npm run capture`. Captures use only the fictional sample. `docs/assets/capture-info.json` records their provenance. Automated accessibility checks complement responsive screenshots; they are not a full manual assistive-technology audit.
 

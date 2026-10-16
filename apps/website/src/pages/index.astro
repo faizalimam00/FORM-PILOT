@@ -5,7 +5,7 @@ import { site } from '../site';
 
 <Layout
   title="Fill the familiar. Review the uncertain."
-  description="FormPilot is a local-first form autofill extension. Reuse your profile across web forms, inspect every suggestion, and choose exactly what gets filled."
+  description="FormPilot is a local-first form autofill extension. Fill matching fields with your local profile in one click. Review uncertain matches without leaving the toolbar popup."
 >
   <section class="hero">
     <div class="hero-copy">
@@ -18,8 +18,8 @@ import { site } from '../site';
         Review the uncertain.
       </h1>
       <p>
-        Reuse your profile across forms, inspect every suggestion, and stay in control of what gets
-        filled.
+        Your saved details, ready for the next form. Fill confident matches with one click and
+        review the uncertain ones when needed.
       </p>
       <div class="hero-actions">
         <a class="button" href="/demo/">
@@ -34,9 +34,9 @@ import { site } from '../site';
     <figure class="hero-capture">
       <img
         src="/product-review.png"
-        width="470"
-        height="790"
-        alt="Actual FormPilot review window with Alex Morgan’s fictional profile, explained matches and checkboxes for selecting fields."
+        width="380"
+        height="485"
+        alt="Actual FormPilot toolbar popup showing a fictional sample profile, fill results and Undo."
         fetchpriority="high"
       />
       <figcaption>Real extension capture · fictional sample details</figcaption>
@@ -60,9 +60,7 @@ import { site } from '../site';
         <br />
         The same final say.
       </h2>
-      <p>
-        A reusable profile for web forms, with a deliberate pause before your details go anywhere.
-      </p>
+      <p>A reusable profile for web forms, with a single fill button and optional field review.</p>
     </div>
     <div class="grid-3">
       <article class="step">
@@ -75,18 +73,18 @@ import { site } from '../site';
       </article>
       <article class="step">
         <span class="step-number">2</span>
-        <h3>See what fits the form</h3>
+        <h3>Click Fill form</h3>
         <p>
-          Ask FormPilot to inspect the page. See each proposed match, the reason behind it, and
-          anything that needs a closer look.
+          Open the toolbar popup and fill every empty high-confidence match. Your current page stays
+          in place; existing values stay untouched.
         </p>
       </article>
       <article class="step">
         <span class="step-number">3</span>
-        <h3>Choose. Fill. Carry on.</h3>
+        <h3>Check. Correct. Carry on.</h3>
         <p>
-          Select the fields you want. Existing values stay put by default. Review the completed form
-          and submit it yourself.
+          Review uncertain fields inside the popup if needed. Check the completed form and submit it
+          yourself.
         </p>
       </article>
     </div>
@@ -118,7 +116,7 @@ import { site } from '../site';
       <article class="principle-row">
         <span class="pill">High confidence</span>
         <h3>Clear signals, explained</h3>
-        <p>Strong matches are selected when the field is empty and the profile has a value.</p>
+        <p>Fill form fills these when the field is empty and the profile has a value.</p>
       </article>
       <article class="principle-row">
         <span class="pill review">Needs review</span>
@@ -216,8 +214,8 @@ import { site } from '../site';
       <details>
         <summary>Does this replace my browser’s autofill?</summary>
         <p>
-          It gives you a separate review-before-fill workflow and reusable personal or work
-          profiles. Your browser’s own autofill can remain enabled.
+          It gives you reusable personal or work profiles, a direct fill button and optional
+          review-before-fill controls. Your browser’s own autofill can remain enabled.
         </p>
       </details>
       <details>
@@ -230,8 +228,8 @@ import { site } from '../site';
       <details>
         <summary>Can I undo a fill?</summary>
         <p>
-          Yes, the most recent fill can be undone within five minutes in the same page session.
-          Fields you edited afterward are skipped.
+          Yes, the most recent fill can be undone within five minutes while the toolbar popup stays
+          open. Closing it or scanning again clears Undo. Fields edited afterward are skipped.
         </p>
       </details>
       <details>

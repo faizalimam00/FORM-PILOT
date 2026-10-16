@@ -16,11 +16,11 @@ Hidden, disabled and read-only fields; passwords; OTP and verification prompts; 
 
 ## Not inspected
 
-All embedded frames, including cross-origin iframes; open and closed shadow roots; rich-text editors; canvas controls and unsupported custom dropdowns. Some protected websites reject extension access. Browser-internal pages and extension stores are restricted by the browser. The review window explains access failures instead of requesting persistent access to every site.
+All embedded frames, including cross-origin iframes; open and closed shadow roots; rich-text editors; canvas controls and unsupported custom dropdowns. Some protected websites reject extension access. Browser-internal pages and extension stores are restricted by the browser. The toolbar popup explains access failures instead of requesting persistent access to every site.
 
 ## “This page could not be inspected”
 
-Return to the target website, click its FormPilot toolbar icon, and open a new review window. Access belongs to the tab where you invoked the extension. A cross-origin navigation revokes that access. Reloading or updating the extension also invalidates existing sessions.
+Return to the target website, click its FormPilot toolbar icon, then click Fill form. Access belongs to the tab where you invoked the extension. A cross-origin navigation revokes that access. Reloading or updating the extension also invalidates existing sessions.
 
 ## “Field changed since scan”
 
@@ -36,10 +36,10 @@ A blank profile value, vague label, conflicting signals or unsupported language 
 
 ## Undo restores only some fields
 
-Undo skips fields that disappeared, changed meaning, or were edited after filling. Input/change events record later edits even when a value is changed back. Silent programmatic edits that leave exactly the same value cannot be distinguished. After five minutes, a rescan, another fill, closing review or page navigation, old undo data is no longer available.
+Undo skips fields that disappeared, changed meaning, or were edited after filling. Input/change events record later edits even when a value is changed back. Silent programmatic edits that leave exactly the same value cannot be distinguished. After five minutes, a rescan, another fill, closing the toolbar popup or page navigation, old undo data is no longer available.
 
 ## Scope and performance bounds
 
-A scan includes at most 500 controls and at most 1,000 options per select. Metadata and profile values have length limits. Remembered mappings are disabled for semantically indistinguishable duplicates. Multiple review windows for the same tab invalidate each other’s scan sessions: use one at a time.
+A scan includes at most 500 controls and at most 1,000 options per select. Metadata and profile values have length limits. Remembered mappings are disabled for semantically indistinguishable duplicates. Review and filling happen in the toolbar popup; closing it clears the current scan and undo.
 
 If a problem persists, report the browser version, supported control type and a minimal fictional reproduction. Never attach a real profile export. Compare the [five demo forms](/forms/event/) and [benchmark methodology](/benchmarks/) before assuming compatibility with a new site.

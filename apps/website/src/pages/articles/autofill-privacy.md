@@ -19,7 +19,7 @@ Export deserves the same clarity. A backup file is readable JSON with personal i
 
 ## Explain when page access starts
 
-An extension does not need permission to inspect every website all the time to help with a form you are currently using. FormPilot uses the browser’s activeTab permission and programmatic script injection after you invoke it. The scan starts when you press Scan page in the review window.
+An extension does not need permission to inspect every website all the time to help with a form you are currently using. FormPilot uses the browser’s activeTab permission and programmatic script injection after you invoke it. Scanning starts when you press Fill form or choose Review fields & corrections in the toolbar popup. Fill form also fills empty high-confidence matches; the optional review view lets you inspect before filling.
 
 The scan reads supported controls and their metadata in the top-level document. It records whether fields have values. The content script temporarily keeps original values for change detection and undo, but does not return them to the review UI. It does not inspect frames or shadow-root controls in this release.
 

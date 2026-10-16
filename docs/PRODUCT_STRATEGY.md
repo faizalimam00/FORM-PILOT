@@ -2,19 +2,19 @@
 
 FormPilot serves people repeating their own details in registration, application, onboarding and address forms. The value event is a reviewed fill that saves retyping while preserving control. Return is driven by another form, not notifications. No tracking is installed.
 
-Promise: **Your details. Your device. Every form, reviewed by you.**
+Promise: **Your details. Your device. Fill with a click. Stay in control.**
 
-The primary journey is create/select profile → invoke toolbar → open review → scan → review and select → fill → inspect outcomes or undo. Options contains profiles, import/export and remembered mappings. Website routes cover the product, controlled playground, five form scenarios, installation, workflow, privacy, docs, benchmark, creator, troubleshooting and three articles.
+The primary journey is create/select profile → invoke toolbar → Fill form → inspect outcomes or undo; optionally review and correct fields inside the same popup. Options contains profiles, import/export and remembered mappings. Website routes cover the product, controlled playground, five form scenarios, installation, workflow, privacy, docs, benchmark, creator, troubleshooting and three articles.
 
 ## Architecture and milestones
 
 1. Shared TypeScript/Zod schema and pure matching engine; explicit abstention and exclusions.
 2. DOM adapter with live element identities, semantic fingerprints, snapshot validation and guarded undo.
-3. WXT MV3: small launcher, standalone persistent review window, options editor, extension-local storage. Only activeTab, scripting and storage permissions. No backend.
+3. WXT MV3: compact direct-fill popup with optional inline review, options editor, extension-local storage. Only activeTab, scripting and storage permissions. No backend.
 4. Astro static site with React demo islands; reusable fixture package. No arbitrary-tab access on website.
 5. Unit/integration/browser verification, held-out benchmark, real captures, repository and launch material.
 
-The persistent review window is deliberate: it keeps review state while users interact with the form, without a Chromium side-panel requirement. V1 targets desktop Chromium. Browser-specific store review and Firefox support are future work.
+The toolbar popup is the complete filling surface. It creates no new window; its temporary scan/undo state ends when the popup closes. V1 targets desktop Chromium. Browser-specific store review and Firefox support are future work.
 
 ## Design
 

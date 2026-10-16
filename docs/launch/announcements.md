@@ -4,7 +4,7 @@ These drafts use the public FormPilot repository and local-demo instructions. Th
 
 ## GitHub release announcement
 
-FormPilot 0.1 is a local-first Chromium extension for reusing your details across repetitive forms. Save personal/work profiles, inspect explained field matches, select what to fill and undo the latest fill without overwriting later edits.
+FormPilot 0.1 is a local-first Chromium extension for reusing your details across repetitive forms. Save personal/work profiles and click Fill form in the toolbar popup. Empty high-confidence matches fill together; optional corrections and Undo stay in the popup.
 
 It uses deterministic semantic matching—no account, backend or AI API. Native inputs, textareas and selects are supported; frames, shadow-root controls and custom dropdowns are outside this release. It never submits forms.
 
@@ -16,7 +16,7 @@ The repository includes real extension tests and a reproducible synthetic benchm
 
 I’ve been building FormPilot, a small browser extension for a familiar task: typing the same details into another form.
 
-The interesting part was keeping the decision visible. FormPilot saves a local profile, explains its field matches and asks you to select uncertain suggestions. It fills only the selected fields and never submits. Undo skips anything you edited afterward.
+The interesting part was keeping the decision visible. FormPilot saves a local profile, explains its field matches and asks you to select uncertain suggestions. Its Fill form button fills empty high-confidence matches and never submits. Optional review handles uncertain mappings; Undo works while the popup stays open.
 
 Version one uses deterministic rules, not an AI service. The repository includes five controlled forms, extension tests and a benchmark that reports abstentions and mistakes alongside correct matches.
 
@@ -45,10 +45,10 @@ If you have a minimal fictional example of a native form control this mishandles
 ## 60-second demonstration script
 
 - **0–8 s:** Show the actual local profile editor with Alex Morgan’s fictional data. “These are the details I keep retyping. FormPilot saves a reusable profile in this browser.”
-- **8–16 s:** Open event registration and the toolbar launcher. “I ask it to inspect this page. Nothing has been filled yet.”
-- **16–27 s:** Scan, expand an explanation, point to high confidence and a needs-review example. “Each match has a reason. Weak evidence stays unselected, and ambiguous fields can stay blank.”
-- **27–36 s:** Select a reviewed field and fill. “Only my selection goes into the form. It doesn’t submit or move to the next step.”
-- **36–45 s:** Edit one filled value manually, then undo. “Undo restores its changes and keeps my later edit.”
+- **8–16 s:** Open event registration and the toolbar popup. “I choose my profile and click Fill form. No new page opens.”
+- **16–27 s:** Show the filled form and popup results. “Confident matches fill together. Existing values and uncertain fields stay untouched.”
+- **27–36 s:** Click Undo while the popup remains open. “I can reverse this fill here. Closing the popup clears Undo.”
+- **36–45 s:** Choose Review fields & corrections and expand an explanation. “I can inspect suggestions or correct a mapping in this same popup.”
 - **45–53 s:** Show difficult demo exclusions and the limitations page. “Native controls are supported. Frames and custom dropdowns aren’t supported in this release.”
 - **53–60 s:** Show github.com/faizalimam00/FORM-PILOT. “Run the fictional-data playground locally. The code, tests and measured benchmark are open to inspect.”
 
@@ -56,7 +56,7 @@ Capture each action from the working app. Do not simulate a successful interacti
 
 ## Five technical content ideas
 
-1. Why a toolbar popup is too short-lived for form review, and why this release uses a persistent window.
+1. Moving form filling into the toolbar popup: one-click filling, optional review and explicit undo lifetime.
 2. The Chrome sender.tab assumption a real extension test caught, and how exact extension-page URL validation fixes it.
 3. “Company email” and “account name”: token-aware matching and abstention in a small pure TypeScript engine.
 4. Filling React-controlled fields, then detecting a country-dependent control replacement before the next mutation.
