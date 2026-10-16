@@ -2,6 +2,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import Layout from '../layouts/Layout.astro';
+import { site } from '../site';
 import extension from '../../../extension/package.json';
 const filename = `formpilot-${extension.version}-chrome.zip`;
 // Astro executes the bundled page from its output directory; the workspace cwd stays stable.
@@ -17,7 +18,7 @@ const release = available
 
 <Layout
   title="Download and install FormPilot"
-  description="Download the prebuilt FormPilot extension for desktop Chrome and Chromium browsers. Extract, load unpacked and start reviewing forms. No build tools needed."
+  description="Download the prebuilt FormPilot extension for desktop Chrome and Chromium browsers. Extract, load unpacked and fill matching fields with one click. No build tools needed."
 >
   <div class="page-heading">
     <h1>Your next form starts here.</h1>
@@ -66,8 +67,9 @@ const release = available
         </>
       ) : (
         <p>
-          The package has not been generated in this source checkout. Run{' '}
-          <code>npm run package:extension</code>, or follow the source-build instructions below.
+          <a class="button" href={`${site.repository}/raw/refs/heads/main/downloads/${filename}`}>
+            Download FormPilot v{extension.version}
+          </a>
         </p>
       )}
     </section>
@@ -88,8 +90,8 @@ const release = available
         extracted folder, not the ZIP file.
       </li>
       <li>
-        <strong>Pin FormPilot and save a profile.</strong> Choose Create your first profile, or try
-        the fictional sample in profile settings.
+        <strong>Pin FormPilot and save a profile.</strong> Open Profiles and create a personal or
+        work profile. A fictional sample is available for trying the demo forms.
       </li>
     </ol>
     <p>
@@ -119,8 +121,8 @@ const release = available
       </li>
     </ul>
     <p>
-      There is no store listing yet. This download needs the manual steps above. One-click
-      installation and automatic store updates require a published browser-store release.
+      This download installs through your browser’s Load unpacked option. Keep the extracted folder
+      in place and use the update steps below when a new package is available.
     </p>
 
     <h2>Fill your first form</h2>
@@ -140,8 +142,8 @@ const release = available
     <p>
       Keep the extracted folder in place. To update, export a profile backup, replace the files in
       that same folder, click Reload on the extension’s settings card, and refresh your form tab.
-      Reopen review from the toolbar. Do not remove the installed extension first: moving to a new
-      folder can create a different extension identity and separate storage.
+      Reopen FormPilot from the toolbar. Do not remove the installed extension first: moving to a
+      new folder can create a different extension identity and separate storage.
     </p>
     <p>
       Unpacked builds do not update automatically. Removing the extension normally removes its
@@ -156,7 +158,7 @@ const release = available
       This creates the unpacked extension at <code>apps/extension/.output/chrome-mv3/</code>, the
       shareable ZIP and checksum at <code>dist/releases/</code>, and the website at{' '}
       <code>apps/website/dist/</code>. To generate just the extension package, run{' '}
-      <code>npm run package:extension</code>. Nothing is published by either command.
+      <code>npm run package:extension</code>.
     </p>
     <p>
       Read <a href="/privacy/">privacy</a> and{' '}

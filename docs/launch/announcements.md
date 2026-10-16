@@ -1,6 +1,4 @@
-# Unpublished launch drafts
-
-These drafts use the public FormPilot repository and local-demo instructions. There is no hosted demo yet. Do not send or publish these drafts without explicit authorization. Check each destination’s rules and current product verification first.
+# Release and community copy
 
 ## GitHub release announcement
 
@@ -8,7 +6,7 @@ FormPilot 0.1 is a local-first Chromium extension for reusing your details acros
 
 It uses deterministic semantic matching—no account, backend or AI API. Native inputs, textareas and selects are supported; frames, shadow-root controls and custom dropdowns are outside this release. It never submits forms.
 
-Start with the local fictional demo and unpacked installation guide: https://github.com/faizalimam00/FORM-PILOT#try-it-locally
+Download and install: https://github.com/faizalimam00/FORM-PILOT/blob/main/docs/installation.md
 
 The repository includes real extension tests and a reproducible synthetic benchmark with its limitations and errors: https://github.com/faizalimam00/FORM-PILOT
 
@@ -38,9 +36,9 @@ Two implementation details were particularly useful: binding random field tokens
 
 There are five fictional demo forms and separate unit, DOM and packaged-extension Chromium tests. The synthetic benchmark publishes its denominators, abstentions and failures; it is not a universal compatibility claim.
 
-Local demo instructions: https://github.com/faizalimam00/FORM-PILOT#try-it-locally · Source: https://github.com/faizalimam00/FORM-PILOT
+Installation: https://github.com/faizalimam00/FORM-PILOT/blob/main/docs/installation.md · Source: https://github.com/faizalimam00/FORM-PILOT
 
-If you have a minimal fictional example of a native form control this mishandles, a reproducible issue would be useful. Please do not share real profile exports. Posted only where project sharing and feedback requests are permitted.
+If you have a minimal fictional example of a native form control this mishandles, a reproducible issue would be useful. Please do not share real profile exports.
 
 ## 60-second demonstration script
 
@@ -50,7 +48,7 @@ If you have a minimal fictional example of a native form control this mishandles
 - **27–36 s:** Click Undo while the popup remains open. “I can reverse this fill here. Closing the popup clears Undo.”
 - **36–45 s:** Choose Review fields & corrections and expand an explanation. “I can inspect suggestions or correct a mapping in this same popup.”
 - **45–53 s:** Show difficult demo exclusions and the limitations page. “Native controls are supported. Frames and custom dropdowns aren’t supported in this release.”
-- **53–60 s:** Show github.com/faizalimam00/FORM-PILOT. “Run the fictional-data playground locally. The code, tests and measured benchmark are open to inspect.”
+- **53–60 s:** Show github.com/faizalimam00/FORM-PILOT. “Download FormPilot from the repository. The code, tests and measured benchmark are open to inspect.”
 
 Capture each action from the working app. Do not simulate a successful interaction or place real personal details in the recording.
 

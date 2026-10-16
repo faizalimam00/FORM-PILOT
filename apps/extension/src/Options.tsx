@@ -65,6 +65,7 @@ export function Options() {
     setMessage('');
   }
   function create(kind: Profile['kind'], sample = false) {
+    if (!state || busy) return;
     if (dirty && !confirm('Discard your unsaved profile changes?')) return;
     setDraft(
       sample ? { ...structuredClone(sampleProfile), id: crypto.randomUUID() } : emptyProfile(kind),
@@ -244,8 +245,12 @@ export function Options() {
               </button>
             ))}
           </div>
-          <button onClick={() => create('personal')}>+ New personal profile</button>
-          <button onClick={() => create('work')}>+ New work profile</button>
+          <button disabled={!state || busy} onClick={() => create('personal')}>
+            + New personal profile
+          </button>
+          <button disabled={!state || busy} onClick={() => create('work')}>
+            + New work profile
+          </button>
           <hr />
           <button aria-pressed={tab === 'data'} onClick={() => setTab('data')}>
             Import, export & privacy
@@ -263,8 +268,8 @@ export function Options() {
           <div className="stack">
             {error && <Notice tone="error">{error}</Notice>}
             {message && <Notice tone="success">{message}</Notice>}
-            {!state && !error && <p>Loading your local profiles…</p>}
-            {tab === 'profiles' && (
+            {!state && !error && <p role="status">Loading your local profiles…</p>}
+            {tab === 'profiles' && state && (
               <>
                 {draft ? (
                   <>
@@ -476,8 +481,8 @@ export function Options() {
                   <div className="panel stack">
                     <h1>Make yourself at home.</h1>
                     <p className="muted">
-                      Create a reusable profile. Every form will still get your review before
-                      anything is filled.
+                      Save your details once, then fill matching fields with one click. You can
+                      review and correct individual matches whenever you need to.
                     </p>
                     <div className="row">
                       <button className="primary" onClick={() => create('personal')}>

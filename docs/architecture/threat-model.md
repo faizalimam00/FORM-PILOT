@@ -29,8 +29,8 @@ The direct Fill form button skips uncertain and nonempty controls but does not r
 
 No personal values are logged. Fixtures and captures use Alex Morgan’s fictional sample with example.com links. Browser tests use isolated temporary profiles. Trace files are ignored by Git and must never be captured from real personal forms. Do not expose the development server beyond loopback by default.
 
-Dependency audit, static type/lint checks, unit/DOM tests and real extension tests are recorded in `docs/QA_REPORT.md`. There is no claim of an independent security audit. Before public release, configure private security reporting and the hosting operator’s privacy information. Store review is still external work.
+Dependency audit, static type/lint checks, unit/DOM tests and real extension tests are recorded in `docs/QA_REPORT.md`. These automated checks complement manual review; they are not an independent security audit.
 
 ## Safe reporting
 
-Use a fictional minimal form and reproduce on a local origin. Do not include live profile JSON, credentials or sensitive page screenshots. Follow [SECURITY.md](../../SECURITY.md). The repository’s private vulnerability reporting is currently disabled; request a private channel through the documented public contact-request link without disclosing sensitive details.
+Use a fictional minimal form and reproduce on a local origin. Do not include live profile JSON, credentials or sensitive page screenshots. Follow [SECURITY.md](../../SECURITY.md). Request a private channel through the documented contact-request link without disclosing sensitive details.

@@ -26,6 +26,7 @@ test('downloaded ZIP loads in Chromium and fills directly from its toolbar popup
     `${release.sha256}  ${release.filename}\n`,
   );
   expect(zip.equals(readFileSync(`dist/releases/${release.filename}`))).toBe(true);
+  expect(zip.equals(readFileSync(`downloads/${release.filename}`))).toBe(true);
   const directory = mkdtempSync(join(tmpdir(), 'formpilot-package-'));
   const files = unzipSync(zip);
   for (const [name, data] of Object.entries(files)) {
@@ -33,6 +34,11 @@ test('downloaded ZIP loads in Chromium and fills directly from its toolbar popup
     const destination = join(directory, name);
     mkdirSync(dirname(destination), { recursive: true });
     writeFileSync(destination, data);
+    expect(
+      Buffer.from(data).equals(
+        readFileSync(`dist/releases/${release.filename.replace(/\.zip$/, '')}/${name}`),
+      ),
+    ).toBe(true);
     if (!['INSTALL.txt', 'LICENSE.txt', 'THIRD-PARTY-NOTICES.txt'].includes(name))
       expect(
         Buffer.from(data).equals(readFileSync(`apps/extension/.output/chrome-mv3/${name}`)),

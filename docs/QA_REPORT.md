@@ -1,116 +1,70 @@
-# FormPilot 0.1 verification report
+# FormPilot verification report
 
-Verified locally on 2026-10-16. This is evidence from the implementation workspace, not a claim of a published release, successful hosted CI run, universal browser support or an independent security audit.
+This report records checks run against FormPilot 0.1.0 on 2026-10-16. Automated checks cover the supported controls and documented workflows; individual websites may handle form events differently.
 
-## Direct toolbar filling (current build)
-
-The toolbar now fills all empty, high-confidence matches with **Fill form**. It opens no new tab or window. Results, profile switching, Undo and optional **Review fields & corrections** are in the same popup. Existing values, uncertain suggestions and excluded fields remain untouched. Undo expires on popup close, rescan, another fill or after five minutes.
-
-The final ZIP is 189,704 bytes; its SHA-256 is `28d2d8b4f9e2b4566d1c743bf89f977f70eecf2b1eb062551c7bf02112f15dfc`. It contains the production manifest with the same three permissions. The package test downloaded this archive, verified its checksum and contents, loaded it in Chromium and filled directly from the actual toolbar popup without another page.
-
-`npm run check` passed: lint, strict types, 70 unit/DOM integration tests and both production builds. `npm run test:e2e` passed all **21 browser tests in 44.8 seconds** on Chromium 153.0.8010.12. The real action-popup tests cover direct filling, no extra pages, existing values, uncertain/sensitive exclusions, inline correction, React-controlled and newly rendered controls, partial undo, restricted pages, active profile switching and a page with no form. The shared `review.html` route remains an explicitly opened test harness for detailed review regressions; the product no longer launches it.
-
-Native popup captures were inspected at 380 × 487 (initial), 380 × 485 (filled) and 380 × 498 (advanced review), in light/dark mode. Fill and Undo are visible without scrolling; long review/result lists scroll inside the popup. Actual popup axe WCAG A/AA checks passed in initial, filled, review and dark-review states, with no horizontal overflow. The updated website was inspected at desktop 1440px and mobile 375px. README and homepage use the new real toolbar capture. Benchmark logic is unchanged; earlier measured results remain applicable to the matcher, not browser latency.
-
-A redirected browser-test invocation initially could not start its local server in the restricted shell. The normal local preview and direct `npm run test:e2e` invocation worked. Two test assertions were corrected during development: singular “1 field” feedback, and waiting until profile loading enables the toolbar button before selecting a profile.
-
-The sections below record earlier verification milestones; their window descriptions and package sizes describe those earlier builds.
-
-## Prebuilt download follow-up
-
-The production build now generates `dist/releases/formpilot-0.1.0-chrome.zip` (189,350 bytes), installation instructions, release metadata and a SHA-256 checksum. The static website includes the same files under `/downloads/`. The archive contains compiled extension files, instructions and license notices; no personal profiles, local settings, source maps or development dependencies.
-
-`npm run check` passed again: lint, strict types, 70 unit/integration tests, WXT production ZIP generation and the Astro static build. `npm audit --audit-level=high` still reports zero vulnerabilities after adding the build-only ZIP dependency.
-
-All 15 existing browser cases passed in the expanded run. The new package case initially exposed an Astro bundled-path issue that hid the download button; after correcting the filesystem lookup, `npm run test:e2e -- tests/extension/package.spec.ts` passed. It fetched the actual website ZIP, verified its SHA-256 and byte-for-byte production file contents, extracted it, loaded that extracted directory in Chromium, saved the fictional profile and performed a reviewed fill. It also exercised the download link and checked desktop/mobile accessibility and overflow. The 1440px and 375px installation-page captures were visually inspected.
-
-Chrome/Chromium is the verified target. The download instructions cover Edge and Brave without claiming those browsers were independently tested. Firefox, Safari and mobile remain unsupported. CI is configured to retain the tested package as an artifact; no release or store listing has been published.
-
-## Repository identity follow-up
-
-Repository metadata was read from GitHub: `faizalimam00/FORM-PILOT` is public, its default branch is `main`, it has no configured homepage or GitHub Pages deployment, and its release list is empty. Private vulnerability reporting was verified disabled. No repository settings were changed.
-
-README, website defaults, About and privacy pages, package metadata, extension homepage, archive instructions and launch/profile drafts now use Faizal Imam and the confirmed GitHub URLs. Incomplete identity and launch-link template tokens were removed. Demo/test profiles stay intentionally fictional. Demo links in launch drafts point to the real local-run guide because no hosted demo is available.
-
-`npm run check` passed after these changes: lint, strict types, 70 unit/integration tests, extension packaging and the website build. A generated-artifact check confirmed the repository identity in all 19 HTML pages and in the ZIP manifest/instructions. The updated archive checksum is recorded in `dist/releases/SHA256SUMS.txt`. The six targeted Playwright cases for real capture, downloaded-package installation and website behavior all passed (22.0 seconds), including desktop/mobile accessibility and overflow checks.
-
-## Environment
+## Test environment
 
 - macOS / Darwin 25.4.0, arm64, Apple M1 Pro.
-- npm scripts use the pinned Node 22.22.0 runtime.
-- Real Chromium extension tests: Chrome for Testing **153.0.8010.12**, Playwright 1.64.1.
-- An existing Chromium executable was selected through the ignored `.env.test.local` file. CI is configured to install Playwright's matching bundled Chromium; a hosted CI run has not occurred.
-- Tests and captures use fictional Alex Morgan details only. No external form submission, publication or account operation was performed.
+- Node 22.22.0, with dependencies installed from `package-lock.json`.
+- Chromium 153.0.8010.12 using the production Manifest V3 extension.
+- Website served from the Astro static build on loopback.
+- Fictional sample profiles in isolated browser contexts.
 
-## Commands and observed results
+## Verification
 
-| Command / check                                                             | Observed result                                                                                                                                                                                                                                                |
-| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm ci` in a separate source copy without dependencies or generated builds | Installed 738 packages; audited 746; zero vulnerabilities. The host Node 25 emitted an engine warning; subsequent scripts use pinned Node 22.22.0. Use the documented LTS runtime for your checkout.                                                           |
-| `npm run check`                                                             | Passed in both the main workspace and the separate clean installation: ESLint, root/extension strict TypeScript, Astro diagnostics, 70 unit/DOM integration tests, and production extension and website builds. Astro reported zero errors, warnings or hints. |
-| `npm run test:e2e`                                                          | **15 passed**, 37.9 seconds. Includes production-extension, website, accessibility and actual screenshot capture tests.                                                                                                                                        |
-| `npm run benchmark`                                                         | Generated the checked-in 100-case evaluation and 56-case development results; see the measurements below.                                                                                                                                                      |
-| `npm audit --audit-level=high`                                              | Zero vulnerabilities in the installed dependency tree.                                                                                                                                                                                                         |
-| `npm run format:check`                                                      | Passed; all matched files use Prettier formatting.                                                                                                                                                                                                             |
+`npm run check` covers ESLint, strict TypeScript, Astro diagnostics, 70 unit/DOM integration tests, extension packaging and the static website build. `npm run test:e2e` loads the actual extension and exercises its toolbar action, messaging and injected detector. Browser tests retain the production permissions; test-only debugging is confined to the test browser.
 
-A separate website build with the reserved test origin `https://formpilot.example` passed metadata checks across all 19 HTML pages: canonical URLs, Open Graph URLs/images, sitemap and robots used the configured origin. The original workspace remained unconfigured and noindex, without a sitemap. This was a local configuration test, not a deployment. Package metadata and lockfile consistency were also checked. The screenshot-only test passed again after correcting its TypeScript DOM narrowing and recording the actual native popup size.
+The [GitHub Actions workflow](https://github.com/faizalimam00/FORM-PILOT/actions/workflows/ci.yml) runs the checks on Linux. Its run status is recorded independently from the local results below.
 
-The production extension output is `apps/extension/.output/chrome-mv3/`. The static website output is `apps/website/dist/`, containing 19 HTML pages plus robots and assets. Rollup emitted upstream Zod comment-annotation warnings during bundling; it removed those comments and completed successfully. They are not runtime errors.
+Local results for this revision:
 
-A general project-gate helper passed its format/lint/type/test/build checks but its nested dependency audit could not resolve the registry in the restricted shell. The separately executed npm audit and clean install succeeded. Optional gitleaks, Trivy, ShellCheck and hadolint were unavailable; Python checks did not apply. Do not interpret this report as a completed specialist security audit.
+| Check                    | Result                                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| `npm run check`          | Passed: lint, strict types, 70 unit/DOM tests, extension package and 19-page website build |
+| `npm run test:e2e`       | 22 passed in 47.0 seconds                                                                  |
+| Markdown file-link check | 20 documents checked; no broken file targets                                               |
+| Download verification    | Repository ZIP, website download, checksum and extracted Chrome files matched              |
 
-## What the tests exercise
+## Coverage
 
-The 70 Vitest cases cover versioned schemas and import/export, deterministic matches and intentional abstentions, sensitive-field exclusions, origin/fingerprint memory isolation, DOM detection, native select compatibility, existing-value protection, React-compatible setter/events, stale targets, safe partial undo, expiry and trusted-message boundaries. A regression test ensures excluded control values are never read.
+- Profile validation, import previews, merge/replace, deletion and active profile switching.
+- Delayed profile loading: creation waits for local storage before editing or saving.
+- Matching, abstention, sensitive exclusions and exact-origin remembered mappings.
+- Toolbar filling without additional tabs or windows.
+- Existing-value protection, native dropdown normalization and stale-control detection.
+- React-controlled inputs and newly rendered controls.
+- Optional inline review, explicit replacements and remembered corrections.
+- Guarded Undo, subsequent edits, expiry and temporary-state cleanup.
+- Restricted pages, permission errors, malformed messages and trusted storage boundaries.
+- Downloaded ZIP checksums, extracted-file integrity and filling from the extracted extension.
+- Playground behavior, navigation, metadata, keyboard labels and responsive layouts.
 
-The browser suite loads the unchanged production MV3 manifest, triggers the actual toolbar action using Chromium's extension debugging protocol, opens the real launcher and review window, and injects the production detector. It does not broaden the manifest's host permissions. The debugging flag belongs to the test browser, not the installed extension.
+The shared `review.html` entrypoint is opened explicitly by integration tests for detailed review assertions. The product uses the toolbar popup and does not launch that page.
 
-Ten extension behavior cases verify:
+## Visual and accessibility checks
 
-1. Only `activeTab`, `scripting` and `storage` permissions; no persistent hosts, automatic content scripts or web-accessible resources; isolated scripts cannot read trusted storage.
-2. Explicit scan without value changes, explained suggestions, selected fill, no submission and partial undo preserving later edits.
-3. Job application professional links and bio.
-4. React-controlled SaaS inputs and conditionally rendered fields.
-5. Shipping/billing review and country-driven state replacement requiring rescan.
-6. Ambiguous-field abstention, exclusions, existing values, corrections and removable remembered mappings.
-7. Profile creation, switching, import/export and deletion.
-8. Missing temporary access and browser-restricted pages.
-9. Field semantic changes after scan.
-10. Closing review clears detector state; malformed messages are rejected.
+The toolbar popup is inspected in its initial, filled and review states at its native compact dimensions. Fill and Undo remain visible after filling; longer field lists scroll. The profile editor is checked at 1280px, and the website at 1440px and 375px in light/dark mode with reduced motion.
 
-Four website cases verify the actual-engine playground, responsive/accessibility behavior, extension options/review accessibility, and all 18 public content routes with unique titles, descriptions, one H1, working internal links and honest unconfigured SEO. A fifteenth case captures the real product.
+Axe WCAG A/AA checks cover the toolbar states, profile editor, review controls, install page, homepage and playground. Automated checks complement manual visual inspection; they do not replace a full assistive-technology assessment.
 
-Automated axe WCAG A/AA checks reported no violations in the tested states. Desktop 1440px and mobile 375px layouts were checked in light and dark modes with reduced motion, and a scanned review was checked at 430px. This is not a complete screen-reader or keyboard audit.
+[Toolbar capture](assets/product-review.png) · [Inline review](assets/popup-review.png) · [Dark review](assets/review-dark.png) · [Desktop website](assets/website-desktop.png) · [Mobile website](assets/website-mobile.png) · [Capture metadata](assets/capture-info.json)
 
-## Visual inspection
+## Matching benchmark
 
-The captured launcher, 470 × 790 review, 1280 × 900 profile editor, 1440px desktop site and 375px mobile site were inspected. Light/dark captures use the real UI and fictional data. Compact headers, mapping rows and action bars were adjusted to keep the first suggestion readable; horizontal overflow and insufficient link distinction were fixed.
+The fixed evaluation has 100 synthetic English-language cases: 81 eligible controls and 19 expected exclusions. The measured results are 58 correct proposals out of 59, giving 98.3% precision and 72.8% eligible-field coverage. Abstention is 27.2%, with zero incorrect high-confidence matches. All 21 intentional abstentions and 19 exclusions were handled as expected. One review-level proposal was incorrect.
 
-See [review](assets/product-review.png), [dark review](assets/review-dark.png), [launcher](assets/launcher.png), [profiles](assets/profile-desktop.png), [desktop website](assets/website-desktop.png), [mobile website](assets/website-mobile.png) and [dark mobile website](assets/website-mobile-dark.png). [Capture metadata](assets/capture-info.json) records the browser, timestamp and dimensions. The homepage and README use this real review capture.
+Median matcher time was 0.0093 ms and p95 was 0.0153 ms on the recorded environment. These figures exclude DOM scanning and browser messaging. See the [generated results](benchmarks/results.md) and [methodology](benchmarks/methodology.md) for denominators, timing procedure and retained failures.
 
-Direct browser launch from the restricted shell was blocked by the environment. The Playwright test command successfully launched Chromium, exercised the extension and generated the captures. No mock screenshots replace that verification.
+## Manual verification
 
-## Benchmark findings
+1. Load the extracted Chrome folder and save a fictional profile.
+2. On event registration, invoke FormPilot and click **Fill form**. Confirm the fields fill without another window, submission or navigation. Use Undo before closing the popup.
+3. Open **Review fields & corrections**. Check explanations, mapping changes, exclusions and page highlighting.
+4. On shipping details, select the address fields explicitly. Fill country, rescan, then fill the newly rendered region control.
+5. On SaaS onboarding, verify React state feedback and conditional company fields. On the difficult form, check abstention, sensitive exclusions and existing-value protection.
+6. Switch profiles, preview an import, test merge/replace and delete the fictional test data.
+7. Close and reopen the popup: old scan and undo state must be unavailable. Verify the unsupported-page message on a browser settings page.
 
-The fixed evaluation split contains 100 synthetic English cases: 81 eligible fields and 19 expected exclusions. There were 59 proposals, 58 correct, for **98.3% precision**, **72.8% coverage** and **27.2% abstention**. All 21 intentional abstentions were respected, all exclusions were classified correctly, and there were **zero incorrect high-confidence matches**.
+## Platform boundaries
 
-Two misses remain visible in the generated JSON: an empty middle-name profile value yields no proposal, and contradictory autocomplete/label metadata produces an incorrect first-name suggestion marked **Needs review**, which is not automatically selected. Median matching time was 0.0093 ms and p95 0.0153 ms across 10,000 timed calls after 2,000 warm-ups. These measurements exclude DOM work and browser messaging.
-
-Read the [full results](benchmarks/results.md) and [methodology](benchmarks/methodology.md), including denominators, initial-run retention and development changes after evaluation. This is not an independently authored blind benchmark or a representative sample of the web.
-
-## Manual verification for a new browser or release
-
-1. Use Node 22.22.x or 24 LTS. Run `npm ci`, `npm run check`, `npm run test:browsers` and `npm run test:e2e`. Start the site with `npm run dev`.
-2. Load `apps/extension/.output/chrome-mv3/` at `chrome://extensions` using Developer mode → Load unpacked. Pin FormPilot. Create/save the fictional sample in settings.
-3. Open `/forms/event/`, invoke the toolbar, then Scan page. Confirm the form remains empty; inspect an explanation and Show on page. Fill selected fields, edit one manually, then undo: the edited value must stay while other changed values return.
-4. Try `/forms/job/`, `/forms/shipping/`, `/forms/saas/` and `/forms/difficult/`. Select review-level address fields explicitly. Fill country, then rescan the new state dropdown. Verify SaaS state feedback, conditional controls and difficult-form abstentions/exclusions. Existing values require replacement opt-in and selection. Complete/reset each demo locally.
-5. Change a mapping, opt into remembering it, fill, rescan, then inspect/delete the mapping in settings. It must not apply on a different origin or changed form fingerprint.
-6. Create and switch a work profile. Test unsaved changes, custom fields, export, import preview, merge and replace. Verify profile deletion and all-data deletion. Delete the fictional export afterward.
-7. Rescan after changing the page; verify stale targets are skipped. Close review and reopen: old scan/undo must be unavailable. Try a browser settings page and confirm the friendly unsupported state.
-8. Check the popup and review at compact sizes, options, keyboard focus, light/dark mode and reduced-motion behavior. Check desktop/mobile website routes and the playground without assuming it can access another tab.
-
-## Remaining limits and external gates
-
-The Chrome 120 API minimum is declared, but the minimum version, Edge, Firefox and a broad real-site matrix were not tested. All iframes, shadow-root controls, rich text, custom dropdowns and unsupported native types are outside v1. Matching primarily understands English and a limited country/region alias set. Browser scheduling and asynchronous website changes can affect results. No Lighthouse score, Web Vitals benchmark or full assistive-technology audit is claimed.
-
-The repository is now [faizalimam00/FORM-PILOT](https://github.com/faizalimam00/FORM-PILOT), maintained by Faizal Imam. Remaining publication work is a real HTTPS website domain, a private reporting route, hosting log disclosures and optional browser-store account/review. Check actual hosted CI results before distributing builds. No site, store listing, separate profile README or promotional content has been published by this work. See [deployment](launch/deployment.md).
+Chrome/Chromium desktop is tested. Edge and Brave use the same package format but have not been independently verified. Firefox, Safari and mobile browsers are unsupported. The [compatibility guide](../apps/website/src/pages/limitations.md) covers frames, custom controls, language support and dynamic-form limits.

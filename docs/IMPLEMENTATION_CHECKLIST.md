@@ -1,7 +1,6 @@
 # FormPilot implementation checklist
 
-- [x] Inspect workspace and ancestor instructions (empty workspace; none found).
-- [x] Confirm architecture, visual direction, dependencies, and official API guidance.
+- [x] Document architecture, visual direction, dependencies and browser API references.
 - [x] Versioned profile schema, validation, imports, exports, sample profiles.
 - [x] Deterministic matcher, exclusions, normalization, scoped memories.
 - [x] User-triggered DOM scan, safe fill, highlight, and guarded undo.
@@ -14,7 +13,7 @@
 - [x] Repository, architecture, privacy, threat model, contribution and launch docs.
 - [x] Final clean build, responsive inspection, and evidence report.
 
-The repository identity is faizalimam00/FORM-PILOT, maintained by Faizal Imam. Website hosting and store publication remain external steps; no website domain or store listing is configured.
+Maintained by Faizal Imam in [faizalimam00/FORM-PILOT](https://github.com/faizalimam00/FORM-PILOT).
 
 ## Prebuilt distribution follow-up
 
@@ -35,3 +34,10 @@ The repository identity is faizalimam00/FORM-PILOT, maintained by Faizal Imam. W
 - [x] Keep profile selection, results, undo and optional corrections inside the popup.
 - [x] Verify direct fill, existing-value protection, uncertainty, exclusions, undo and no new windows in Chromium.
 - [x] Update instructions and captures; rebuild the installable ZIP.
+
+## Public release presentation
+
+- [x] Replace internal agent instructions with user and maintainer documentation.
+- [x] Provide a direct repository ZIP download and a concise installation guide.
+- [x] Investigate the hosted profile-save failures and verify the correction.
+- [x] Rebuild distribution files, check links, inspect rendered pages and run relevant tests.

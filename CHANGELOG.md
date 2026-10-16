@@ -2,16 +2,13 @@
 
 ## 0.1.0 — 2026-10-16
 
-Initial local release candidate; not published to a browser store.
+- Fill matching fields from the toolbar with one click; results, optional review and Undo stay in the same popup.
+- Save personal and work profiles, custom fields, professional links and a full-name override.
+- Preview profile imports, merge or replace saved profiles, export backups and delete local data.
+- See matching explanations, confidence categories and sensitive-field exclusions. Remember corrections for an exact website and field context.
+- Preserve existing values, validate live controls before filling and skip later edits during Undo.
+- Install from a Chromium ZIP with instructions and a SHA-256 checksum.
+- Explore five example forms and an interactive playground, with documentation and reproducible matching benchmarks.
+- Use light and dark themes with accessible controls and reduced-motion support.
 
-- Ready-to-extract Chromium ZIP, installation instructions, SHA-256 checksum, website download page and CI build artifacts. No compilation required for end users.
-
-- WXT Manifest V3 extension with one-click Fill form in the toolbar popup. Optional review, corrections, results and Undo stay inside the popup; no separate window opens.
-- Personal/work profiles, custom nonsensitive fields, derived full name, versioned imports/exports and deletion controls.
-- Deterministic semantic matching with explanations, abstention, conservative exclusions and exact-origin remembered corrections.
-- Selected-field filling, existing-value protection, live target validation and guarded undo.
-- Five controlled demo forms, shared-engine playground, Astro documentation and three substantive articles.
-- Reproducible labelled benchmark, unit/DOM tests, packaged-extension browser tests, accessible light/dark UI and real product captures.
-- Public-repository contribution, security, architecture and unpublished launch material.
-
-See QA_REPORT.md for executed verification and limitations. No public deployment, store availability or adoption claims are included.
+[Installation](docs/installation.md) · [Compatibility](apps/website/src/pages/limitations.md) · [Verification](docs/QA_REPORT.md)

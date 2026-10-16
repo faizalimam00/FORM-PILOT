@@ -1,6 +1,6 @@
 # FormPilot: a practical 30-day launch plan
 
-Status: draft only. No content has been sent or published. The source repository is github.com/faizalimam00/FORM-PILOT. The schedule begins when the website host and private-reporting route are ready and further publication is authorized. This plan promises neither rankings nor follower growth.
+A 30-day plan for demonstrations, documentation, feedback and small releases.
 
 The reason to follow Faizal Imam is ongoing useful releases, transparent engineering decisions, reproducible experiments and responsive maintenance. Product usefulness is the starting point; creator attribution stays restrained.
 
@@ -11,12 +11,12 @@ The reason to follow Faizal Imam is ongoing useful releases, transparent enginee
 3. Verify five forms with fictional data and capture the actual scan/review/fill/undo sequence.
 4. Review privacy copy against the manifest, storage implementation and hosting choices. Configure private reports before launch.
 5. Verify the faizalimam00 profile and FORM-PILOT repository links, then configure the chosen website origin in a local preview.
-6. Publish the prepared repository changes and website only after authorization. Verify links, canonical URLs, sitemap and crawl settings.
-7. Ask a small number of willing testers in an existing relationship to try the install guide. No unsolicited messages; invitations require authorization.
+6. Update the repository download and installation guide. Verify links, canonical URLs, sitemap and crawl settings.
+7. Ask a small number of willing testers in an existing relationship to try the install guide. Keep participation voluntary.
 
 ## Days 8–14: explain one useful behavior at a time
 
-8. Publish an authorized concise release note with supported controls and limitations.
+8. Publish a concise release note with supported controls and limitations.
 9. Share the 60-second real demonstration in one appropriate channel after checking its rules.
 10. Write up activeTab and the direct-fill toolbar workflow, optional inline review and popup/session limitations.
 11. Publish the existing benchmark methodology and generated report. Include the incorrect review-level proposal, synthetic-data limits and runtime denominator.
@@ -41,15 +41,15 @@ The reason to follow Faizal Imam is ongoing useful releases, transparent enginee
 24. Re-run relevant tests and the benchmark; explain any tradeoff instead of hiding metric movement.
 25. Capture updated real screenshots only if the interface changed.
 26. Review documentation searchability: precise titles, useful internal links and specific troubleshooting answers. Avoid bulk keyword pages.
-27. If a browser-store release is desired, prepare the package and disclosures. Submission requires separate authorization and an actual developer account.
-28. Review the prepared creator profile draft for @faizalimam00. Copy it into the separate profile repository only with authorization; do not imply past achievements or adoption.
+27. Prepare the package, screenshots and privacy disclosures for browser-store distribution if that channel is part of the release.
+28. Update the creator profile’s FormPilot description, installation link and product screenshot.
 29. Publish a short maintenance note: shipped fixes, unresolved constraints and next small experiment.
-30. Assess real feedback qualitatively. Decide what to maintain, improve or defer. Do not fabricate install/follower baselines, testimonials or growth forecasts.
+30. Assess real feedback qualitatively. Decide what to maintain, improve or defer. Record measured outcomes and the feedback that informed each decision.
 
 ## Practical signals, without tracking users
 
 Use voluntary issue reports, install-guide questions, reproduced defects and completed fixes. If the maintainer later wants usage measurement, define a separate privacy-reviewed proposal with consent and minimal data. No analytics is included by default. GitHub stars are not proof of correctness or a product acceptance gate.
 
-## Boundaries
+## Community participation
 
-No fake stars/followers, follow-for-follow, scraped contacts, automated outreach, repeated promotional replies, unsupported uniqueness claims or ranking promises. Read community rules and contribute useful context. Publish only after authorization. Do not share personal profile data, traces from real forms or private feedback without permission.
+Participate where the work is relevant and each community’s rules allow it. Keep feedback requests voluntary, use real product captures and measured results, and protect personal information in reports and demonstrations. Credit contributors and focus follow-up posts on useful changes.

@@ -1,19 +1,19 @@
 # Security policy
 
-FormPilot is maintained by [Faizal Imam (@faizalimam00)](https://github.com/faizalimam00) in [faizalimam00/FORM-PILOT](https://github.com/faizalimam00/FORM-PILOT). Version 0.1 is the initial locally tested release candidate. No browser-store publication or external security audit is claimed.
+FormPilot is maintained by [Faizal Imam](https://github.com/faizalimam00). Security reports should describe the affected version and browser, the impact, and a minimal reproduction using fictional data.
 
 ## Reporting a vulnerability
 
-GitHub private vulnerability reporting is currently disabled for this repository, verified on 2026-10-16. There is no advertised private security inbox.
+To arrange a private reporting channel, open a [security contact request](https://github.com/faizalimam00/FORM-PILOT/issues/new?title=Private%20security%20contact%20request&body=Please%20arrange%20a%20private%20channel%20for%20a%20security%20report.%20No%20sensitive%20details%20are%20included%20in%20this%20request.). **The contact request is public:** include only the request for a private channel. Share vulnerability details after the maintainer provides that channel.
 
-To arrange a private channel, open a [private-contact request](https://github.com/faizalimam00/FORM-PILOT/issues/new?title=Private%20security%20contact%20request&body=Please%20arrange%20a%20private%20channel%20for%20a%20security%20report.%20No%20sensitive%20details%20are%20included%20in%20this%20request.). **That request is public:** include only a request for a private reporting route. Wait for the maintainer to arrange a private channel before sharing vulnerability details. Do not post exploit instructions, profile exports, credentials, affected personal data or sensitive screenshots in public issues.
+Keep exploit instructions, profile exports, credentials, personal information and sensitive screenshots out of public issues. Ordinary bugs with fictional examples can use the [bug report form](https://github.com/faizalimam00/FORM-PILOT/issues/new?template=bug_report.yml).
 
-For ordinary bugs that contain no security-sensitive information, use the [bug report form](https://github.com/faizalimam00/FORM-PILOT/issues/new?template=bug_report.yml) with fictional data.
+## Coordinating a fix
 
-## What to include in a private report
+Include the FormPilot version, browser and operating-system versions, expected and actual behavior, reproduction steps, and the trust boundary affected. Test only systems you own or have permission to assess.
 
-Affected version/build, browser version, operating system, a minimal local fictional HTML reproduction, expected and actual behavior, impact, and whether the problem crosses a trust boundary. Avoid testing third-party sites without authorization.
+The maintainer will assess the report, reproduce the issue where possible, and coordinate a fix and disclosure. See the [threat model](docs/architecture/threat-model.md) for the implementation’s trust boundaries.
 
-The maintainer will assess the report, reproduce it where possible, and coordinate a fix and disclosure. No response-time guarantee is made. Private reporting availability must be rechecked before a browser-store launch.
+## Data boundaries
 
-See [the threat model](docs/architecture/threat-model.md) for privacy boundaries and residual risks. Ordinary browser storage is not encryption; a website can read values once filled.
+Profiles are stored locally in the browser. FormPilot does not encrypt browser storage or exported files. A website can read values filled into its form before submission. Read the [privacy policy](apps/website/src/pages/privacy.md) for storage, export and deletion details.

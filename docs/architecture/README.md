@@ -70,8 +70,8 @@ Undo expires after five minutes. Scan data expires after 15 minutes. A new scan,
 
 ## Build and deployment
 
-Node 22.22.x or 24 LTS, npm workspaces, TypeScript strict, React 19, WXT 0.21, Astro 7, Tailwind 4, Zod 4, Vitest 5 and Playwright. The initially considered older Astro/Vitest releases had security advisories; patched versions are used. The only stack substitution is npm for pnpm because this execution environment permitted npm’s registry access and blocked pnpm’s. `package-lock.json` is authoritative; `npm ci` is the clean install path.
+Node 22.22.x or 24 LTS, npm workspaces, TypeScript strict, React 19, WXT 0.21, Astro 7, Tailwind 4, Zod 4, Vitest 5 and Playwright. The monorepo uses npm workspaces. `package-lock.json` is authoritative; `npm ci` is the clean install path.
 
 The pinned local Node development dependency makes npm scripts use Node 22.22 even when the shell has an older Node. Contributors should still install a supported host Node release. Website CLI telemetry is disabled in every npm script. No telemetry is present in the product.
 
-Build artifacts are local. Hosting requires a real domain in PUBLIC_SITE_URL. Without it, canonical/absolute social links and sitemap are omitted and robots blocks indexing. Deployment and public account configuration are separate explicit maintainer actions.
+The repository ZIP is generated in `downloads/`; release artifacts and the extracted extension are generated in `dist/releases/`. Website hosting uses PUBLIC_SITE_URL. Without it, canonical/absolute social links and sitemap are omitted and robots blocks indexing. See the build and distribution guide for hosting configuration.

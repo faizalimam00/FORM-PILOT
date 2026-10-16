@@ -1,0 +1,37 @@
+FormPilot 0.1.0 — prebuilt desktop Chromium extension
+
+No Node.js, npm, account or build step is needed to use this download.
+
+INSTALL
+1. Extract formpilot-0.1.0-chrome.zip into a permanent folder, such as Documents/FormPilot.
+2. Open chrome://extensions in Chrome, edge://extensions in Edge, or brave://extensions in Brave.
+3. Turn on Developer mode. Click Load unpacked.
+4. Select the extracted folder containing manifest.json (not the ZIP file).
+5. Pin FormPilot. Create and save a profile, or try the fictional sample.
+6. On a web form, click FormPilot > Fill form. All empty high-confidence matches fill together.
+   No new window opens. Existing values, uncertain matches and sensitive fields are skipped.
+   Optional Review fields & corrections stays in the popup. The form is never submitted.
+   Undo works while the popup stays open; closing it or scanning again clears undo.
+
+COMPATIBILITY
+Chrome and Chromium desktop are tested. Chrome 120+ is required.
+Edge and Brave use the same format but have not been independently verified.
+Firefox, Safari and mobile browsers are unsupported. Managed browsers may restrict Developer mode.
+See the installation guide for supported controls and troubleshooting.
+
+UPDATES
+Keep this folder in place. Export a profile backup before updating; it contains personal information.
+Replace the files in the SAME folder, click Reload on the extension card, refresh the web page,
+and reopen the toolbar popup. Do not remove the installed extension first. A new folder can create a new extension
+identity and separate storage. This installation method uses manual updates.
+
+PRIVACY
+Profiles stay in extension-local storage. Storage and profile exports are not encrypted.
+Websites can read values once filled. No automatic submission, cloud sync or external matching calls.
+No personal profiles or saved settings are included in this archive.
+
+Built by Faizal Imam. FormPilot source is licensed under MIT; see LICENSE.txt.
+Source: https://github.com/faizalimam00/FORM-PILOT
+Creator: https://github.com/faizalimam00
+Installation: https://github.com/faizalimam00/FORM-PILOT/blob/main/docs/installation.md
+Documentation: https://github.com/faizalimam00/FORM-PILOT/tree/main/docs

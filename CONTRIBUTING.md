@@ -19,7 +19,7 @@ npm run test:browsers
 npm run test:e2e
 ```
 
-Do not commit `.env`, local browser overrides, node_modules, builds, traces or personal data. If a browser check cannot run, say which command failed and why. Do not label playground coverage as extension coverage.
+Do not commit `.env`, local browser overrides, node_modules, temporary build directories, traces or personal data. The curated `downloads/` directory is the distribution exception: regenerate it with `npm run package:extension` when extension code or installation text changes. If a browser check cannot run, say which command failed and why. Do not label playground coverage as extension coverage.
 
 ## Matching changes
 

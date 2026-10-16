@@ -4,11 +4,11 @@ title: Built by Faizal Imam
 description: A software developer and AI builder exploring useful tools and practical engineering problems.
 ---
 
-I enjoy creating useful tools and exploring practical engineering problems. FormPilot is one of those projects: a small browser extension for a familiar annoyance, with careful boundaries around personal information and automation.
+I enjoy creating useful tools and exploring practical engineering problems. I built FormPilot to make repetitive forms easier: save your details once, fill familiar fields quickly, and keep control of what you share.
 
 ## Why FormPilot
 
-Repetitive forms are a good place to ask a simple engineering question: how much work can software remove while keeping the person in control? In this release, the answer is a local profile, deterministic semantic matching, visible uncertainty and an explicit fill action.
+Repetitive forms are a good place to ask a simple engineering question: how much work can software remove while keeping the person in control? FormPilot combines a local profile, semantic field matching, visible uncertainty and an explicit fill action.
 
 There is no AI service behind the matching engine. Labels and autocomplete metadata provide useful signals, and unclear cases should remain visible. The project includes reproducible benchmarks and tests because those decisions should be inspectable.
 

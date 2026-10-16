@@ -4,7 +4,7 @@ title: Your details stay with you
 description: What FormPilot stores, what a scan reads, and what changes when you fill a website’s form.
 ---
 
-FormPilot version 0.1 works without an account, backend, subscription or AI API. This policy describes the code in this repository. A future hosted website or store release must be checked against this policy before publication.
+FormPilot stores your reusable profile on your device and matches fields locally. This policy explains what it reads, what it stores and what happens when you fill a form.
 
 ## What is stored
 
@@ -30,7 +30,7 @@ Passwords, payment fields, government ID prompts, authentication codes and other
 
 The extension contains no analytics, remote executable code or runtime network client for matching. No personal data is logged. Browser platform updates and a website’s own scripts are outside FormPilot’s control. The local demo and playground have no external submission endpoint and use a fictional sample profile. Please use fictional details in demonstrations.
 
-The public website contains no tracking scripts or third-party fonts. If deployed, its hosting provider may retain ordinary server access logs; the maintainer must document the chosen host and retention policy before launch. No host has been selected in this repository.
+The FormPilot website includes no tracking scripts or third-party fonts. A web host may process request information such as IP addresses and timestamps when serving pages; that processing is separate from extension profile storage. The extension does not upload your profile to the website.
 
 ## Export, import and deletion
 
@@ -40,4 +40,4 @@ Delete individual profiles, remembered mappings or all FormPilot data in setting
 
 ## Questions and security reports
 
-The creator is [Faizal Imam (@faizalimam00)](https://github.com/faizalimam00). Follow the repository’s [security reporting policy](https://github.com/faizalimam00/FORM-PILOT/blob/main/SECURITY.md) to arrange a private channel. Private vulnerability reporting is currently disabled; a public contact request must contain no sensitive details. Do not put personal profiles, exports, tokens or exploit details into public issues. See [limitations](/limitations/) and [the architecture documentation](/docs/) for the technical boundaries.
+The creator is [Faizal Imam (@faizalimam00)](https://github.com/faizalimam00). Follow the repository’s [security reporting policy](https://github.com/faizalimam00/FORM-PILOT/blob/main/SECURITY.md) to arrange a private channel. Request a private reporting channel before sharing security-sensitive details. Do not put personal profiles, exports, tokens or exploit details into public issues. See [limitations](/limitations/) and [the architecture documentation](/docs/) for the technical boundaries.

@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
-import { resolve, extname } from 'node:path';
+import { resolve, extname, dirname } from 'node:path';
 import { unzipSync, zipSync, strToU8 } from 'fflate';
 
 const root = resolve(import.meta.dirname, '..');
@@ -65,17 +65,16 @@ INSTALL
    Undo works while the popup stays open; closing it or scanning again clears undo.
 
 COMPATIBILITY
-The production package is tested in Chromium; see docs/QA_REPORT.md in the source repository
-for the measured browser version. Chrome 120 is the declared API minimum, not a tested version matrix.
-Edge and Brave use Chromium and can load this format, but have not been independently tested here.
-Firefox, Safari and mobile browsers are not supported by this package. Browser or organization policies
-may prevent Developer mode. There is no published store listing or automatic installer.
+Chrome and Chromium desktop are tested. Chrome 120+ is required.
+Edge and Brave use the same format but have not been independently verified.
+Firefox, Safari and mobile browsers are unsupported. Managed browsers may restrict Developer mode.
+See the installation guide for supported controls and troubleshooting.
 
 UPDATES
 Keep this folder in place. Export a profile backup before updating; it contains personal information.
 Replace the files in the SAME folder, click Reload on the extension card, refresh the web page,
 and reopen the toolbar popup. Do not remove the installed extension first. A new folder can create a new extension
-identity and separate storage. There is no automatic update service for this unpacked build.
+identity and separate storage. This installation method uses manual updates.
 
 PRIVACY
 Profiles stay in extension-local storage. Storage and profile exports are not encrypted.
@@ -85,6 +84,7 @@ No personal profiles or saved settings are included in this archive.
 Built by Faizal Imam. FormPilot source is licensed under MIT; see LICENSE.txt.
 Source: https://github.com/faizalimam00/FORM-PILOT
 Creator: https://github.com/faizalimam00
+Installation: https://github.com/faizalimam00/FORM-PILOT/blob/main/docs/installation.md
 Documentation: https://github.com/faizalimam00/FORM-PILOT/tree/main/docs
 `;
 entries['INSTALL.txt'] = strToU8(instructions);
@@ -116,7 +116,7 @@ const artifacts: Record<string, Uint8Array | string> = {
   'INSTALL.txt': instructions,
   'release.json': JSON.stringify(release, null, 2) + '\n',
 };
-for (const directory of ['dist/releases', 'apps/website/public/downloads']) {
+for (const directory of ['dist/releases', 'apps/website/public/downloads', 'downloads']) {
   const destination = resolve(root, directory);
   mkdirSync(destination, { recursive: true });
   // Remove only stale generated packages, leaving unrelated files untouched.
@@ -126,5 +126,13 @@ for (const directory of ['dist/releases', 'apps/website/public/downloads']) {
   for (const [name, content] of Object.entries(artifacts))
     writeFileSync(resolve(destination, name), content);
 }
+// Keep the folder used by Load unpacked current as well as the downloadable ZIP.
+const unpacked = resolve(root, 'dist/releases', filename.replace(/\.zip$/, ''));
+rmSync(unpacked, { recursive: true, force: true });
+for (const [name, content] of Object.entries(entries)) {
+  const destination = resolve(unpacked, name);
+  mkdirSync(dirname(destination), { recursive: true });
+  writeFileSync(destination, content);
+}
 console.log(`Packaged ${filename} (${zip.byteLength.toLocaleString()} bytes). SHA-256: ${sha256}`);
-console.log('Ready in dist/releases/ and website public/downloads/. Nothing was published.');
+console.log('ZIP, checksum and extracted Chrome folder are ready in dist/releases/.');
